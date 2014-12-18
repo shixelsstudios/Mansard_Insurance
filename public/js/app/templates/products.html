@@ -1,0 +1,25 @@
+<div class="products-view">
+	<div class="products-choose">
+		<div class="products-title">Choose Product Below</div>
+		<button class="btn btn-primary choose-motor product-btn">Motor Products</button>
+		<button class="btn btn-primary choose-life product-btn">Life Products</button>
+		<div class="product-dropdowns">
+			<label>Motor Products</label>
+			<select>
+			 {{#each motor}}
+				  <option>{{ProductName}}</option>
+			  {{/each}}
+			</select>
+			<label>Life Products</label>
+			<select>
+			 {{#each life}}
+				  <option>{{ProductName}}</option>
+			  {{/each}}
+			</select>
+		</div>
+	</div>
+	<div class="products-quote">
+		<div class="products-title">Product Quote</div>
+		<h1 class="temp-search-result">Select Product for Quote</h1>
+	</div>
+</div>

@@ -1,0 +1,30 @@
+define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!templates/login'],
+    function(Mansard, Backbone, Marionette, $, Model, template) {
+        //ItemView provides some default rendering logic
+        return Backbone.Marionette.ItemView.extend( {
+            template: template,
+            // View Event Handlers
+            events: {
+                'click .login-button': 'handleLogin'
+            },
+            onRender: function () {
+            // get rid of that pesky wrapping-div
+            // assumes 1 child element.
+				this.$el = this.$el.children();
+				this.setElement(this.$el);
+			},
+            handleLogin: function(e) {
+                e.preventDefault();
+
+                if (!$('.login-username').val() || !$('.login-password').val()) {
+                    $('.login-error').html('<div class="alert alert-warning" role="alert">Please fill out all fields!</div>')
+                } else if ($('.login-password').val() && $('.login-username').val()) {
+                    var username = $('.login-username').val();
+                    var password = $('.login-password').val();
+                    var credentials = {username: username, password: password};
+                    console.log(credentials);
+                    Mansard.api.login(credentials);
+                }
+            }
+        });
+    });
