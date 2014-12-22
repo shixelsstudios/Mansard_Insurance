@@ -8,6 +8,9 @@ $medium_grey: #53595d;
 $primary_green: #154a3e;
 $white: #fff;
 $mute_grey: #b0b0b0;
+$light_orange: #ffded2;
+$black: #000;
+$header_grey: #eaedf1;
 
 $linkedin_color: #1883BB;
 $facebook_color: #425F9C;
@@ -38,6 +41,16 @@ button.btn.btn-primary {
 
 	&:hover {
 		background: $secondary_orange;
+	}
+}
+
+button.btn.btn-secondary {
+	background: $primary_green;
+	color: $white;
+	margin-bottom: 15px;
+
+	&:hover {
+		background: darken($primary_green, 5%);
 	}
 }
 

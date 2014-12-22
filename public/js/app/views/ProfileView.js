@@ -11,11 +11,14 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
 
             },
             initialize: function() {
-                var jsonObject = JSON.parse(localStorage.getItem("session"));
-                this.session_token = jsonObject.session_token;
-                this.agent = JSON.parse(JSON.parse(jsonObject.agent)); 
-                console.log(this.agent);
-                this.model = new Model({agent: this.agent});
+
+                if (localStorage.getItem("session")) {
+                    var jsonObject = JSON.parse(localStorage.getItem("session"));
+                    this.session_token = jsonObject.session_token;
+                    this.agent = JSON.parse(JSON.parse(jsonObject.agent)); 
+                    this.model = new Model({agent: this.agent});
+                }
+                
             },
             onRender: function () {
             // get rid of that pesky wrapping-div

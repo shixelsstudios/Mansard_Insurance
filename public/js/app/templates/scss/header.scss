@@ -34,7 +34,7 @@
 				float: right;
 				@include box-shadow($dark_orange -2px -1px 4px 0px);
 				background: $primary_orange;
-				.main-menu-button {
+				.main-menu-button, .back-menu-button {
 					position: absolute;
 					font-size: 2.5em;
 					color: white;

@@ -3,8 +3,11 @@ define(['backbone', 'marionette'], function(Backbone, Marionette) {
        //"index" must be a method in AppRouter's controller
        appRoutes: {
            "": "login",
+           "login": "login",
            "dashboard": "dashboard",
-           "products": "products"
+           "products": "products",
+           "contact/add": "contactAdd",
+           "customer": "customer"
        }
    });
 });

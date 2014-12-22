@@ -10,6 +10,7 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             onRender: function () {
             // get rid of that pesky wrapping-div
             // assumes 1 child element.
+            console.log('login!');
 				this.$el = this.$el.children();
 				this.setElement(this.$el);
 			},
@@ -17,7 +18,7 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                 e.preventDefault();
 
                 if (!$('.login-username').val() || !$('.login-password').val()) {
-                    $('.login-error').html('<div class="alert alert-warning" role="alert">Please fill out all fields!</div>')
+                    $('.login-error').html('<div class="alert alert-warning" role="alert">Please fill out all fields!</div>');
                 } else if ($('.login-password').val() && $('.login-username').val()) {
                     var username = $('.login-username').val();
                     var password = $('.login-password').val();

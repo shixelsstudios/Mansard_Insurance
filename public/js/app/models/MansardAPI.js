@@ -47,6 +47,11 @@ define([
                 });
             }, 10000);
         },
+        logout: function() {
+            localStorage.removeItem('session');
+            Mansard.appRouter.navigate('#login', {trigger: true});
+            Mansard.isLoggedIn = false;
+        },
         search: function(query) {
             var send = null;
             $.ajax({
@@ -70,7 +75,7 @@ define([
         },
         quote: function(type, data) {
             var url = null;
-
+            var send = null;
             if (type === 'motor') {
                 url = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Quote/jComputePremium_Motor';
             } else if (type === 'life') {
@@ -81,10 +86,13 @@ define([
                     url: url,
                     type: 'POST',
                     data: data,
+                    async: false,
                     success: function (rData) {
-                        console.log(rData);
+                        send = rData;
                 }
             });
+
+            return send;
         },
         products: function(type) {
             var url = null;
@@ -117,22 +125,36 @@ define([
             });
 
         },
-        customer: function(credentials) {
+        save_contact: function(data) {
             $.ajax({
-                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Customer/getCustomerPolicies?customerNo=' + credentials.customerNo +'&email=' + credentials.email,
-                success: function(rData) {
-                    console.log(rData);
-                }
+                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Contacts/Post_SaveContactInfo',
+                type: 'post',
+                data: data,
+                success: function(res) {
+                    $('.contact-add-form')[0].reset();
+                    $('.submit-contact-button').removeAttr('disabled');
+                    $('.submit-contact-button').html('Save Contact');
+                    $('.contact-message').html(res.Message);
+            }
 
             });
+        },
+        customer: function(credentials) {
+            var send = null;
+            $.ajax({
+                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Customer/getCustomerPolicies?customerNo=' + credentials.customerNo +'&email=' + credentials.email,
+                async: false,
+                success: function(rData) {
+                   send = rData;
+                }
+            });
+
+            return send;
         },
         session: function(agent) {
             var token = 'MA_' + this.generateToken(70);
             var current_session = {agent: JSON.stringify(agent), session_token: token};
             localStorage.setItem('session', JSON.stringify(current_session));
-        },
-        logout: function() {
-
         },
         token: function() {
             var chars = "0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ";
@@ -149,9 +171,16 @@ define([
                 str += this.token();
             }
             return str;
+        },
+        discovery_quesions: function() {
+             $.ajax({
+                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Discovery/Post_GetAllDiscoveryInterviewQuestions',
+                type: 'POST',
+                success: function(res){
+                    console.log(res);
+                }
+            });
         }
-
-
         });
 
     // Returns the Model class
