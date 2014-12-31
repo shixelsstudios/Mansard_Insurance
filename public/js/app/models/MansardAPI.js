@@ -5,12 +5,14 @@
 define([
     "jquery",
     "underscore",
-    "backbone"
+    "backbone",
+    "views/SearchResultView"
     ],
     function(
     $,
     _,
-    Backbone
+    Backbone,
+    SearchResultView
     ){
     // Creates a new Backbone Model class object
     var MansardAPI = Backbone.Model.extend({
@@ -21,48 +23,46 @@ define([
         },
         login: function (credentials) {    
             var self = this;
-            $('.login-load').show();
-            $('.login-overlay').fadeIn();
-            var loginTimeout = setTimeout(function () {
-                $.ajax({
-                    url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/MobileLogin/atu?CustomerNo=0&passcode=0&Username=' + credentials.username + '&Password=' + credentials.password,
-                    type: 'POST',
-                    success: function (rData) {
+            $('.login-button').html('<i class="fa fa-spinner fa-spin"></i>');
+            $('.login-button').attr('disabled', 'disabled');
+            $.ajax({
+                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/MobileLogin/atu?CustomerNo=0&passcode=0&Username=' + credentials.username + '&Password=' + credentials.password,
+                type: 'POST',
+                success: function (rData) {
 
-                        if (rData.username) {
-                            self.session(JSON.stringify(rData));
-                            Mansard.appRouter.navigate('#dashboard', {trigger: true}); 
-                        }
-                        else {
-                            $('.login-load').hide();
-                            $('.login-error').html('<div class="alert alert-warning" role="alert">Incorrect Username and/or Password!</div>')
-                            $('.login-overlay').fadeOut();
-
-                            clearTimeout(loginTimeout);
-                        }
-                    },
-                    complete: function() {
-                        clearTimeout(loginTimeout);
+                    if (rData.username) {
+                        self.session(JSON.stringify(rData));
+                        Mansard.appRouter.navigate('dashboard', {trigger: true}); 
                     }
-                });
-            }, 10000);
+                    else {
+                        $('.login-error').html('<div class="alert alert-warning" role="alert">Incorrect Username and/or Password!</div>')
+                        $('.login-button').html('Login');
+                        $('.login-button').removeAttr('disabled');
+                    }
+                }
+            });
         },
         logout: function() {
             localStorage.removeItem('session');
-            Mansard.appRouter.navigate('#login', {trigger: true});
+            Mansard.appRouter.navigate('/', {trigger: true});
             Mansard.isLoggedIn = false;
         },
         search: function(query) {
-            var send = null;
+            var self = this;
+            $('.search-results-container').html('<div class="search-load"><i class="fa fa-spinner fa-spin"></i> Searching...</div>');
+            $('.results-num').html('-');
             $.ajax({
                 url:'https://online.mansardinsurance.com/MansardSalesWebApi/api/Customer/Post_GetCustomerByName/' + query,
-                async: false,
                 success: function (rData) {
-                    send = rData;
+                   for (var i = 0; i < rData.length; i++) {
+                        var search_result = rData[i];
+                        var result = new SearchResultView({result: search_result});
+                        self.renderResult(result,rData.length);
+
+                    }
+                    $('.results-num').html(rData.length);
                 }
             });
-
-            return(send);
         },
         isFA: function(agent_code) {
             $.ajax({
@@ -173,15 +173,63 @@ define([
             return str;
         },
         discovery_quesions: function() {
+            var send = null;
+
              $.ajax({
                 url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Discovery/Post_GetAllDiscoveryInterviewQuestions',
                 type: 'POST',
+                async: false,
                 success: function(res){
-                    console.log(res);
+                    send = res;
                 }
             });
+
+             return send;
+        },
+        discovery_options: function(id) {
+            var send = null;
+            $.ajax({
+                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Discovery/Post_GetOptions?questionID=' + id,
+                type: 'POST',
+                async: false,
+                success: function(res){
+                    send = res;
+                }
+            });
+            return send;
+        },
+        discovery_results: function(data) {
+            var send = null;
+
+            $.ajax({
+                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Discovery/Post_GetInferenceBySectionScoreAndSectionID?sectionId=' + data.sectionId + '&sectionScore=' + data.sectionScore,
+                type: 'POST',
+                async: false,
+                success: function(res){
+                   send = res;
+                }
+            });
+
+            return send;
+        },
+        renderResult: function(result) {
+           $('.search-results-container').prepend(result.render().el);
+        },
+        kyc_dropdowns: function(type) {
+            var send = null;
+            var url = null;
+
+            if (type === 'buisness')
+            $.ajax({
+            url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Shared/getBusinessType',
+            type: 'GET',
+            async:false,
+            success: function(res){
+                console.log(res);
+            }
+            })
         }
-        });
+    });
 
     // Returns the Model class
     return  MansardAPI;

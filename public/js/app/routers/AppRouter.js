@@ -7,7 +7,10 @@ define(['backbone', 'marionette'], function(Backbone, Marionette) {
            "dashboard": "dashboard",
            "products": "products",
            "contact/add": "contactAdd",
-           "customer": "customer"
+           "customer": "customer",
+           "discovery": "discovery",
+           "kyc": "kyc",
+           "cart": "cart"
        }
    });
 });

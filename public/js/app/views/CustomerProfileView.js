@@ -9,8 +9,7 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             events: {
                 'click .add-customer-button': 'addCustomer',
                 'click .call-customer-button': 'callCustomer',
-                'click .email-customer-button': 'emailCustomer',
-                'click .edit-customer-button': 'editCustomer'
+                'click .email-customer-button': 'emailCustomer'
             },
             initialize: function() {
                 this.customer = Mansard.customer;                
@@ -40,21 +39,6 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             },
             emailCustomer: function() {
                 window.open('mailto:' + this.customer.email);
-            },
-            editCustomer: function() {
-                var editable_fields = $('.customer-editable-field');
-
-                for (var i = 0; i < editable_fields.length; i++) {
-                    var field = editable_fields[i];
-
-                    var label = $($(field).children('.label'))[0].innerText;
-                    var value = $($(field).children('.value'))[0].innerText;
-                    $(field).html('<label>' + label + '</label><input type="text" value="' + value + '"/>')
-                    console.log(label, value);
-                }
-                $('.customer-profile-info').append('<button class="btn btn-secondary customer-edit-save-button">Save</button>');
-
-                $('.customer-profile-img').append('<i class="fa fa-camera edit-customer-camera"></i>');
             }
         });
     });

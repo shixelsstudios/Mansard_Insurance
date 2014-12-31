@@ -25,19 +25,10 @@ define([
 
         Mansard.api = new MansardAPI();
         Mansard.cart = new MansardCart();
-        Mansard.cart.items = [{name: 'product1', qty:1}, {name: 'product2', qty: 2}]
+        Mansard.discovery_questions = Mansard.api.discovery_quesions();
+        Mansard.cart.items = [{name: 'product1', qty:1, price: 5000, customer: '3100001536'}, {name: 'product2', qty: 2, price: 1000000, customer:'3100001536'}];
         Mansard.env = "dev";
-        Mansard.customer = {
-            CustomerNo: "3100001536",
-            Fullname: "AKINDELE ADEBAYO ADESIJI",
-            PhoneNo: null,
-            addy: "178 Awolowo Road Ikoyi Lagos",
-            bdate: "1/21/1977 12:00:00 AM",
-            email: "adebayo.akindele@gtbank.com",
-            label: "AKINDELE ADEBAYO ADESIJI",
-            tel2: "08035892501",
-            value: "3100001536"
-        };
+        Mansard.customer = null;
 
         if (localStorage.getItem("session") === null) {
             Mansard.isLoggedIn = false;
@@ -54,7 +45,8 @@ define([
             headerRegion:"#header-container",
             profileRegion:"#user-profile-container",
             mainAppRegion:"#right-area-container",
-            fullAppRegion: "#page"
+            fullAppRegion: "#page",
+            navRegion: "#main-nav-container"
         });
 
         Mansard.addInitializer(function () {

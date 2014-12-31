@@ -31,7 +31,6 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             },
             renderQuickResult: function(quickResult) {
                var selector = '.search-quick-result-container';
-               console.log(quickResult, selector);
                $(selector).html(quickResult.render().el);
                
             }

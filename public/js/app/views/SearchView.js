@@ -20,28 +20,13 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             },
             searchHandler: function (e) {
                 var query = e.currentTarget.value; 
-                var selector = '.search-results-container';
-                this.$el.find(selector).html('');               
                 if (query.length > 2) {
-                    this.searchStore = null;
-                    
-                    this.searchStore = Mansard.api.search(query);
-
-                    for (var i = 0; i < this.searchStore.length; i++) {
-                        var search_result = this.searchStore[i];
-                        var result = new SearchResultView({result: search_result});
-                        this.renderResult(result,this.searchStore.length);
-
-                    }
-                    var result_count_selector = '.results-num';
-                    this.$el.find(result_count_selector).html(this.searchStore.length);
+                    Mansard.api.search(query);
+                } else if (query.length < 2) {
+                    $('.search-results-container').html('');
+                    $('.results-num').html('0');
                 }
                 
-            },
-            renderResult: function(result) {
-               var selector = '.search-results-container';
-               this.$el.find(selector).prepend(result.render().el);
-               
             }
         });
     });
