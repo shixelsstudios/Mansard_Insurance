@@ -3,19 +3,29 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
         //ItemView provides some default rendering logic
         return Backbone.Marionette.ItemView.extend( {
             template: template,
-            questions: null,
+            dropdowns: {},
             model: null,
             // View Event Handlers
             events: {
                 'click .choose-ind': 'showIndForm',
                 'click .choose-corp': 'showCorpForm',
                 'click .submit-corp': 'submitCorpForm',
-                'click .submit-ind' : 'submitIndForm'
+                'click .submit-ind' : 'submitIndForm',
+                'click .go-to-ind2': 'goToInd2',
+                'click .go-to-ind1': 'goToInd1'
             },
             initialize: function() {
-                //this.questions = Mansard.api.kyc();
+                this.dropdowns.business = Mansard.api.kyc_dropdowns('business');
+                this.dropdowns.transaction = Mansard.api.kyc_dropdowns('transaction');
+                this.dropdowns.religion = Mansard.api.kyc_dropdowns('religion');
+                this.dropdowns.job = Mansard.api.kyc_dropdowns('job');
+                this.dropdowns.employ = Mansard.api.kyc_dropdowns('employ');
+                this.dropdowns.profession = Mansard.api.kyc_dropdowns('profession');
+                this.dropdowns.salary = Mansard.api.kyc_dropdowns('salary');
 
-                //console.log(this.questions);
+
+                this.model = new Model({dropdowns: this.dropdowns});
+                console.log(this.dropdowns);
             },
             onRender: function () {
             // get rid of that pesky wrapping-div
@@ -51,9 +61,26 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             },
             submitIndForm: function(e) {
                 e.preventDefault();
+                var indFormData = $('.ind-form').serialize();
+                Mansard.api.kyc(indFormData);
             },
             submitCorpForm: function(e) {
                 e.preventDefault();
+                var corpFormData = $('.corp-form').serialize();
+                Mansard.api.kyc(corpFormData);
+            },
+            goToInd1: function(e) {
+                e.preventDefault();
+
+                $('.ind-form-2').hide();
+                $('.ind-form-1').show();
+            },
+            goToInd2: function(e) {
+                e.preventDefault();
+
+                $('.ind-form-1').hide();
+                $('.ind-form-2').show();
+
             }
         });
     });

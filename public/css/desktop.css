@@ -3119,30 +3119,43 @@ button.btn.btn-primary.submit-contact-button {
 form.ind-form, form.corp-form {
   margin-top: 15px;
   position: relative;
-  left: 5%;
+  padding: 0 20px;
   display: none;
 }
 /* line 12, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/kyc.scss */
 form.ind-form .kyc-question, form.corp-form .kyc-question {
   display: inline-block;
+  width: 49%;
+  margin-bottom: 25px;
 }
 
-/* line 17, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/kyc.scss */
+/* line 19, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/kyc.scss */
 .kyc-button {
   width: 80%;
   margin: 15px;
   height: 50px;
 }
-/* line 22, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/kyc.scss */
+/* line 24, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/kyc.scss */
 .kyc-button.active {
   background: #af421b !important;
 }
 
-/* line 27, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/kyc.scss */
-.submit-ind, .submit-corp {
-  width: 90%;
-  height: 50px;
-  margin-top: 15px;
+/* line 29, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/kyc.scss */
+.ind-form-2 {
+  display: none;
+}
+
+/* line 32, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/kyc.scss */
+button.btn.btn-secondary.submit-corp {
+  display: block;
+  float: right;
+}
+
+/* line 36, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/kyc.scss */
+.status-kyc {
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 /* line 1, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/nav.scss */
@@ -12290,7 +12303,6 @@ button.close {
     display: none !important;
   }
 }
-/*# sourceMappingURL=bootstrap.css.map */
 /* X-editable - v1.5.1 
 * In-place editing with Twitter Bootstrap, jQuery UI or pure jQuery
 * http://github.com/vitalets/x-editable

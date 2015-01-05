@@ -6,11 +6,13 @@
 form.ind-form,form.corp-form {
 	margin-top: 15px;
 	position: relative;
-	left: 5%;
+	padding: 0 20px;;
 	display:none;
 
 	.kyc-question {
 		display: inline-block;
+		width: 49%;
+		margin-bottom: 25px;
 	}
 }
 
@@ -24,8 +26,15 @@ height: 50px;
 }
 }
 
-.submit-ind, .submit-corp {
-width: 90%;
-height: 50px;
-margin-top: 15px;
+.ind-form-2 {
+	display:none;
+}
+button.btn.btn-secondary.submit-corp {
+display: block;
+float: right;
+}
+.status-kyc {
+text-align: center;
+font-weight: bold;
+font-size: 16px;
 }

@@ -217,17 +217,99 @@ define([
         },
         kyc_dropdowns: function(type) {
             var send = null;
+            var url_ext = null;
+
+            if (type === 'business') {
+                url_ext = 'getBusinessType';
+            } else  if (type === 'transaction') {
+                url_ext = 'getTransactionStatus';
+            } else  if (type === 'religion') {
+                url_ext = 'getReligion';
+            } else  if (type === 'job') {
+                url_ext = 'GetJobTitles';
+            } else  if (type === 'employ') {
+                url_ext = 'GetEmploymentTypes';
+            } else  if (type === 'profession') {
+                url_ext = 'GetProfession';
+            } else  if (type === 'salary') {
+                url_ext = 'getAnnualSalary';
+            }
+
+            $.ajax({
+                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Shared/' + url_ext,
+                type: 'GET',
+                async: false,
+                success: function(res){
+                    send = res;
+                }
+            });
+
+            return send;
+        },
+        kyc: function(data) {
+            $('.submit-ind').html('<i class="fa fa-spinner fa-spin"></i>');
+            $('.submit-ind').attr('disabled', 'disabled');
+            $('.submit-corp').html('<i class="fa fa-spinner fa-spin"></i>');
+            $('.submit-corp').attr('disabled', 'disabled');
+            $.ajax({
+                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/KYC/Post_SaveKycInfo',
+                type: 'POST',
+                data: data,
+                success: function(res){
+                    $('.submit-ind').html('Submit');
+                    $('.submit-ind').removeAttr('disabled');
+                    $('.submit-corp').html('Submit');
+                    $('.submit-corp').removeAttr('disabled');
+                    if(res.IsSuccessful) {
+                        $('.status-kyc').html('KYC Submitted Successfully!');
+                    } else {
+                        $('.status-kyc').html('An Error Occured, Please Try again!');
+                    }
+                }
+            });
+        },
+        save_policy: function(booking_type, booking) {
             var url = null;
 
-            if (type === 'buisness')
-            $.ajax({
-            url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Shared/getBusinessType',
-            type: 'GET',
-            async:false,
-            success: function(res){
-                console.log(res);
+            if (booking_type === 'motor') {
+                url = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Motor/PostMotor';
+            } else if (booking_type === 'life') {
+                url = '';
             }
-            })
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: booking,
+                success: function(res){
+                    console.log(res);
+                }
+            });
+        },
+        policy_dropdowns: function(type) {
+            var send = null;
+            var url = null;
+
+            if (type === 'plates') {
+                url = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Motor/GetVehiclePlateColours';
+            } else  if (type === 'uses') {
+                url = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Motor/GetVehicleUses';
+            } else  if (type === 'places') {
+                url = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Motor/GetVehicleRegPlaces';
+            } else  if (type === 'manYear') {
+                url = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/shared/GetVehicleManufacturinYear';
+            }
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                async: false,
+                success: function(res){
+                    send = res;
+                }
+            });
+
+            return send;,
         }
     });
 
