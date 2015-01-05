@@ -309,7 +309,7 @@ define([
                 }
             });
 
-            return send;,
+            return send;
         }
     });
 
