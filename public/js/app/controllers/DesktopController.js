@@ -12,7 +12,8 @@ define([
     'views/DiscoveryQuestionsView',
     'views/KYCView',
     'views/NavView',
-    'views/CartView'
+    'views/CartView',
+    'views/SavePolicyView'
     ],
     function (
     Mansard, 
@@ -28,7 +29,8 @@ define([
     DiscoveryQuestionsView,
     KYCView,
     NavView,
-    CartView
+    CartView,
+    SavePolicyView
     ){
     return Backbone.Marionette.Controller.extend({
         initialize:function (options) {
@@ -101,8 +103,20 @@ define([
         },
         cart: function() {
             if (Mansard.isLoggedIn) {
-                Mansard.headerRegion.show(new DesktopHeaderView({title: 'Know Your Customer', button: 'fa fa-shopping-cart', menu: 'cart-button', isCart: true, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
+                Mansard.headerRegion.show(new DesktopHeaderView({title: 'Cart', button: 'fa fa-shopping-cart', menu: 'cart-button', isCart: true, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
                 Mansard.mainAppRegion.show(new CartView());
+            } else {
+                this.login();
+            }
+        },
+        policy: function(type) {
+            if (Mansard.isLoggedIn) {
+                if (type === 'motor') {
+                    Mansard.headerRegion.show(new DesktopHeaderView({title: 'Save Policy - Motor', button: 'fa fa-shopping-cart', menu: 'cart-button', isCart: true, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
+                } else if (type === 'life') {
+                    Mansard.headerRegion.show(new DesktopHeaderView({title: 'Save Policy - Life', button: 'fa fa-shopping-cart', menu: 'cart-button', isCart: true, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
+                }
+                Mansard.mainAppRegion.show(new SavePolicyView({type: type}));
             } else {
                 this.login();
             }

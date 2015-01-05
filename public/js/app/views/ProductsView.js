@@ -94,7 +94,7 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                     $('.quote-error').html('<div class="alert alert-warning" role="alert">Please enter value amount!</div>');
                 } else {
                     $('.quote-error').fadeOut();
-                    var policy_type = this.product.product_type;
+                    var policy_type = this.product.product_id;
                     var data = {
                         sumassured: $('.quote-question-1-q').val(),
                         policy: policy_type,
