@@ -32,7 +32,7 @@ define([
 
                     if (rData.username) {
                         self.session(JSON.stringify(rData));
-                        Mansard.appRouter.navigate('dashboard', {trigger: true}); 
+                        window.location('#dashboard'); 
                     }
                     else {
                         $('.login-error').html('<div class="alert alert-warning" role="alert">Incorrect Username and/or Password!</div>')
@@ -44,7 +44,7 @@ define([
         },
         logout: function() {
             localStorage.removeItem('session');
-            Mansard.appRouter.navigate('/', {trigger: true});
+            window.location('#');
             Mansard.isLoggedIn = false;
         },
         search: function(query) {
