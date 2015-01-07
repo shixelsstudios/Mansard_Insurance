@@ -147,8 +147,8 @@ form input[type='number']::-webkit-inner-spin-button {
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url(http://demos.shixels.com/mansard/fonts/font-awesome/fontawesome-webfont.eot?v=4.0.2);
-  src: url(http://demos.shixels.com/mansard/fonts/font-awesome/font-awesome/fontawesome-webfont.eot?v=4.0.2#iefix) format("embedded-opentype"), url(http://demos.shixels.com/mansard/fonts/font-awesome/fontawesome-webfont.woff?v=4.0.2) format("woff"), url(http://demos.shixels.com/mansard/fonts/font-awesome/fontawesome-webfont.ttf?v=4.0.2) format("truetype"), url(http://demos.shixels.com/mansard/fonts/font-awesome/fontawesome-webfont.svg?v=4.0.2#fontawesomeregular) format("svg");
+  src: url(http://demos.shixels.com/mansard/fonts/font-awesome/fontawesome-webfont.eot);
+  src: url(http://demos.shixels.com/mansard/fonts/font-awesome/font-awesome/fontawesome-webfont.eot) format("embedded-opentype"), url(http://demos.shixels.com/mansard/fonts/font-awesome/fontawesome-webfont.woff) format("woff"), url(http://demos.shixels.com/mansard/fonts/font-awesome/fontawesome-webfont.ttf) format("truetype"), url(http://demos.shixels.com/mansard/fonts/font-awesome/fontawesome-webfont.svg) format("svg");
   font-weight: normal;
   font-style: normal;
 }

@@ -17,6 +17,8 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             // assumes 1 child element.
                 this.$el = this.$el.children();
                 this.setElement(this.$el);
+                $('.main-menu-button, #right-area-container').removeClass('close-main-nav active');
+                $('#main-nav-container, #right-area-container').animate({'left': '0%'});
             },
             searchHandler: function (e) {
                 var query = e.currentTarget.value; 

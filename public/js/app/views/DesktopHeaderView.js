@@ -31,14 +31,12 @@ define(['jquery', 'hbs!templates/desktopHeader', 'backbone','models/Model', 'vie
                 $('.main-menu-button, #right-area-container').removeClass('close-main-nav active');
                 $('#main-nav-container, #right-area-container').animate({'left': '0%'});
             },
-            addContact: function() {
+            addContact: function(e) {
+                e.preventDefault()
                 Mansard.appRouter.navigate('#contact/add', {trigger: true}); 
             },
             goBack: function() {
                 window.history.back();
-            },
-            viewCart: function() {
-                Mansard.appRouter.navigate('#cart', {trigger: true}); 
             },
             viewMiniCart: function() {
                 $('.cart-button').addClass('close-mini-cart');
