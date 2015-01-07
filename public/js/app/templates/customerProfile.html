@@ -1,6 +1,6 @@
 <div class="customer-profile-view">
 	<div class="customer-profile-header">
-		<h1>{{customer.Fullname}}</h1>
+		<h1>{{customer.keepFullName}}</h1>
 	</div>
 	<div class="customer-profile-left">
 		<h2>Customer Information</h2>
@@ -9,7 +9,7 @@
         {{#if customer.PhoneNo}}<p class="customer-editable-field"><span class="bold label">Phone:</span> <span class="value">{{customer.PhoneNo}}</span></p>{{/if}}
         {{#if customer.tel2}}<p class="customer-editable-field"><span class="bold label">Other Phone:</span> <span class="value">{{customer.tel2}}</span></p>{{/if}}
         {{#if customer.bdate}}<p class="customer-editable-field"><span class="bold label">DOB:</span> <span class="value">{{customer.bdate}}</span></p>{{/if}}
-        {{#if customer.email}}<p class="customer-editable-field"><span class="bold label">Email:</span> <span class="value">{{customer.email}}</span></p>{{/if}}
+        {{#if customer.email}}<p class="customer-editable-field"><span class="bold label">Email:</span> <span class="value">{{customer.keepEmail}}</span></p>{{/if}}
         </div>
         <hr>
         <h2>Policy Information</h2>

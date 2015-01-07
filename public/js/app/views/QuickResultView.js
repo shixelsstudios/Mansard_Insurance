@@ -20,8 +20,18 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
 				this.setElement(this.$el);
 			},
             viewProfile: function() {
-                console.log(Mansard, Backbone, Marionette, $, Model, template);
-              //  Mansard.customer =  this.quickResult;
+              var user_query = this.createQuerySting(this.quickResult);
+              var url_customer = '#customer?' + user_query;
+              window.location = url_customer;
+            },
+            createQuerySting: function(obj) {
+                var str = [];
+                for(var p in obj){
+                   if (obj.hasOwnProperty(p)) {
+                       str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                   }
+                }
+                return str.join("&");
             }
         });
     });

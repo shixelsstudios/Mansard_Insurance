@@ -79,10 +79,11 @@ define([
                 this.login();
             }
         },
-        customer: function() {
+        customer: function(user) {
+            user = Mansard.api.parseQueryString(user);
             if (Mansard.isLoggedIn) {
                 Mansard.headerRegion.show(new DesktopHeaderView({title: 'Customer Porfile', button: 'fa fa-shopping-cart', menu: 'cart-button', isCart: true, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
-                Mansard.mainAppRegion.show(new CustomerProfileView());
+                Mansard.mainAppRegion.show(new CustomerProfileView({user: user}));
             } else {
                 this.login();
             }

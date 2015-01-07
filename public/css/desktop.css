@@ -3030,6 +3030,17 @@ button.btn.btn-primary.submit-contact-button {
   opacity: 0.5;
 }
 
+/* line 109, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/customerProfile.scss */
+p.customer-editable-field .label {
+  background: #33393d;
+}
+
+/* line 113, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/customerProfile.scss */
+.customer-profile-info {
+  padding-left: 20px;
+  padding-top: 15px;
+}
+
 /* line 1, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/discoveryQuestions.scss */
 .discovery-questions-view {
   width: 100%;

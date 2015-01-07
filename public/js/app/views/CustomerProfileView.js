@@ -11,10 +11,14 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                 'click .call-customer-button': 'callCustomer',
                 'click .email-customer-button': 'emailCustomer'
             },
-            initialize: function() {
-                this.customer = Mansard.customer;                
-                var credentials = {customerNo: this.customer.CustomerNo, email: this.customer.email};
+            initialize: function(options) {
+                this.customer = options.user;
+                console.log(this.customer);                
+                var credentials = {customerNo: this.customer.CustomerNo, email: this.customer.keepEmail};
                 this.customer.profile = Mansard.api.customer(credentials);
+                this.customer.bdate = this.customer.bdate.replace(/\%3A/g, ':');
+                this.customer.bdate = this.customer.bdate.replace(/\%2F/g, '/');
+                this.customer.email = this.customer.email.replace('%40', '@');
                 this.model = new Model({customer: this.customer, genPols: this.customer.profile.GenBizPolicies, lifePols: this.customer.profile.LifePolicies});
             },
             onRender: function () {
