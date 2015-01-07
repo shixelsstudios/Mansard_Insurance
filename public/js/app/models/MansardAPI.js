@@ -286,9 +286,10 @@ define([
                 }
             });
         },
-        policy_dropdowns: function(type) {
+        policy_dropdowns: function(type, productCode) {
             var send = null;
             var url = null;
+            var url_join = null;
 
             if (type === 'plates') {
                 url = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Motor/GetVehiclePlateColours';
@@ -298,6 +299,14 @@ define([
                 url = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Motor/GetVehicleRegPlaces';
             } else  if (type === 'manYear') {
                 url = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/shared/GetVehicleManufacturinYear';
+            } else if (type === 'payFreq') {
+                url = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/shared/getPaymentFrequencies';
+            } else if (type === 'insPeriod') {
+                url_join = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Shared/GetInsurancePeriod/?productCode=' + productCode;
+                url = url_join;
+            } else if (type === 'payPeriod') {
+                url_join = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Shared/GetPaymentPeriod/?productCode=' + productCode;
+                url = url_join;
             }
 
             $.ajax({
@@ -309,6 +318,51 @@ define([
                 }
             });
 
+            return send;
+        },
+        convert: function(contact) {
+            $.ajax({
+                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Contacts/Post_ConvertToLead',
+                data: contact,
+                type: 'POST',
+                success: function(res) {
+                    console.log(res);
+                }
+
+            });
+        },
+        sectors: function(type) {
+            var send = null;
+            var url = null;
+
+            if (type === 'main') {
+                url = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/ESMS/GetAllSectors';
+            } else if (type === 'sub') {
+                url = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/ESMS/GetAllSubSectors';
+            }
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                async: false,
+                success: function (rData) {
+                    send = rData;
+                }
+            });
+
+            return send;
+        },
+        sectorChange: function(data) {
+            var send = null;
+            $.ajax({
+                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/ESMS/Post_CheckIfSectorHasChanged?sectorId=' + data.sectorId + '&mCustRowID=' + data.mCustRowID,
+                type: 'POST',
+                async: false,
+                success: function(res) {
+                    send = res;
+                    console.log(send);
+                }
+            });
             return send;
         }
     });

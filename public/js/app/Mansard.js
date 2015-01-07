@@ -33,9 +33,11 @@ define([
         if (localStorage.getItem("session") === null) {
             Mansard.isLoggedIn = false;
             Mansard.currentUser = null;
+            Mansard.currentUser_SubAgentCode = null;
         } else {
             Mansard.isLoggedIn = true;
             Mansard.currentUser = JSON.parse(JSON.parse(JSON.parse(localStorage.getItem("session")).agent)).username;
+            Mansard.currentUser_SubAgentCode = null;
         }
 
 

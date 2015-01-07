@@ -11,7 +11,8 @@ define(['backbone', 'marionette'], function(Backbone, Marionette) {
            "discovery": "discovery",
            "kyc": "kyc",
            "cart": "cart",
-           "policy/save/:type": 'policy'
+           "policy/save/:type": 'policy',
+           "esms": "esms"
        }
    });
 });

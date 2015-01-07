@@ -21,7 +21,7 @@ $twitter_color: #4B9ED1;
 	box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.3), 0px 2px 3px 0px rgba(0, 0, 0, 0.6);
 }
 
-@include font-face("Open Sans", font-files("../../fonts/opensans/regular.ttf"));
+@include font-face("Open Sans", font-files("fonts/opensans/regular.ttf"));
 
 $primary_font: "Open Sans";
 

@@ -74,7 +74,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 @font-face {
   font-family: "Open Sans";
-  src: url('../../css/fonts/../../fonts/opensans/regular.ttf') format('truetype');
+  src: url('../../css/fonts/fonts/opensans/regular.ttf') format('truetype');
 }
 
 /* line 28, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/variables.scss */
@@ -147,8 +147,8 @@ form input[type='number']::-webkit-inner-spin-button {
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('/../../fonts/font-awesome/fontawesome-webfont.eot?v=4.0.2');
-  src: url('/../../fonts/font-awesome/font-awesome/fontawesome-webfont.eot?v=4.0.2#iefix') format("embedded-opentype"), url('/../../fonts/font-awesome/fontawesome-webfont.woff?v=4.0.2') format("woff"), url('/../../fonts/font-awesome/fontawesome-webfont.ttf?v=4.0.2') format("truetype"), url('/../../fonts/font-awesome/fontawesome-webfont.svg?v=4.0.2#fontawesomeregular') format("svg");
+  src: url('/fonts/font-awesome/fontawesome-webfont.eot?v=4.0.2');
+  src: url('/fonts/font-awesome/font-awesome/fontawesome-webfont.eot?v=4.0.2#iefix') format("embedded-opentype"), url('/fonts/font-awesome/fontawesome-webfont.woff?v=4.0.2') format("woff"), url('/fonts/font-awesome/fontawesome-webfont.ttf?v=4.0.2') format("truetype"), url('/fonts/font-awesome/fontawesome-webfont.svg?v=4.0.2#fontawesomeregular') format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -2452,18 +2452,22 @@ form input[type='number']::-webkit-inner-spin-button {
   float: left;
   margin-right: 20px;
 }
-/* line 26, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 25, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+.search-view .search-view-left .search-results-container .search-result .search-result-img img {
+  width: 100%;
+}
+/* line 29, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-left .search-results-container .search-result .search-result-button {
   float: right;
   width: 25%;
   text-align: center;
   line-height: 90px;
 }
-/* line 32, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 35, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-left .search-results-container .search-result .search-result-button .btn-primary {
   background: #154a3e;
 }
-/* line 36, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 39, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-left .search-results-container .search-result .search-result-info {
   float: left;
   width: 45%;
@@ -2472,21 +2476,21 @@ form input[type='number']::-webkit-inner-spin-button {
   position: relative;
   top: 20%;
 }
-/* line 44, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 47, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-left .search-results-container .search-result .search-result-info .name {
   margin: 0;
   font-weight: bold;
   font-size: 1em;
   text-align: left;
 }
-/* line 51, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 54, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-left .search-results-container .search-result .search-result-info .policy-info {
   margin: 0;
   font-size: 0.9em;
   color: #53595d;
   text-align: left;
 }
-/* line 57, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 60, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-left .search-results-container .search-result .search-result-info .member-since {
   margin: 0;
   font-size: 0.8em;
@@ -2496,52 +2500,52 @@ form input[type='number']::-webkit-inner-spin-button {
   color: #e35522;
   text-align: left;
 }
-/* line 71, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 74, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-left .search-bar-container {
   width: 100%;
   height: 60px;
   background: #eaedf1;
 }
-/* line 76, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 79, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-left .search-bar-container .form-group.col-sm-4 {
   width: 90%;
   margin: 0 auto;
   position: relative;
   top: 15px;
 }
-/* line 82, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 85, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-left .search-bar-container input.form-control {
   border: 0;
   height: 30px;
   border-radius: 5px;
   padding-left: 5px;
 }
-/* line 89, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 92, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-left .search-bar-container .input-group-addon {
   background-color: #fff;
   border: 0;
 }
-/* line 93, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 96, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-left .search-bar-container .merged input:first-child {
   border-right: 0px;
 }
-/* line 96, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 99, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-left .search-bar-container .merged .input-group-addon + input {
   border-left: 0px;
 }
-/* line 100, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 103, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-left .search-counter-container {
   height: 50px;
   border-bottom: 1px solid #eaedf1;
   text-align: center;
   line-height: 50px;
 }
-/* line 106, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 109, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-left .search-counter-container .result-bold {
   color: #e35522;
   font-weight: bold;
 }
-/* line 112, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 115, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-right {
   float: right;
   width: 50%;
@@ -2550,13 +2554,13 @@ form input[type='number']::-webkit-inner-spin-button {
   -moz-box-shadow: #eaedf1 -1px 0px 0px 0px;
   box-shadow: #eaedf1 -1px 0px 0px 0px;
 }
-/* line 118, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 121, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-right .search-result-title-container {
   width: 100%;
   height: 60px;
   background: #f9fafc;
 }
-/* line 124, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 127, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-view .search-view-right .search-quick-result-container .temp-search-result {
   color: #b0b0b0;
   font-style: italic;
@@ -2566,7 +2570,7 @@ form input[type='number']::-webkit-inner-spin-button {
   margin-top: 40%;
 }
 
-/* line 136, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
+/* line 139, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/search.scss */
 .search-load {
   text-align: center;
   position: relative;
@@ -3353,6 +3357,100 @@ li.main-nav-item i {
 .mini-total {
   font-weight: bold !important;
   color: black !important;
+}
+
+/* line 1, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/policy.scss */
+form.policy-motor-form, form.policy-life-form {
+  padding: 0 10%;
+}
+
+/* line 4, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/policy.scss */
+.policy-item-large {
+  width: 100%;
+  margin: 10px 0;
+}
+/* line 7, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/policy.scss */
+.policy-item-large label {
+  display: block;
+}
+/* line 10, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/policy.scss */
+.policy-item-large select {
+  width: 30%;
+}
+
+/* line 14, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/policy.scss */
+.policy-item {
+  width: 45%;
+  margin: 10px 0;
+  margin-right: 25px;
+  display: inline-block;
+}
+/* line 19, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/policy.scss */
+.policy-item label {
+  display: block;
+}
+/* line 22, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/policy.scss */
+.policy-item select {
+  width: 100%;
+}
+/* line 25, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/policy.scss */
+.policy-item input {
+  width: 100%;
+}
+
+/* line 29, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/policy.scss */
+.policy-motor-form-2 {
+  display: none;
+}
+
+/* line 1, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/esms.scss */
+.esms-view {
+  width: 100%;
+  height: 100%;
+  float: right;
+  background: white;
+}
+
+/* line 8, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/esms.scss */
+.esms-choose {
+  float: left;
+  width: 30%;
+  height: 100%;
+  text-align: center;
+}
+/* line 14, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/esms.scss */
+.esms-choose button {
+  width: 80%;
+}
+
+/* line 18, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/esms.scss */
+.esms-form {
+  border-left: 1px solid #eaedf1;
+  height: 100%;
+  float: right;
+  width: calc(70% - 1px);
+}
+
+/* line 25, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/esms.scss */
+.esms-choose-item {
+  width: 100%;
+  margin: 20px 0;
+  padding: 0 20px;
+}
+/* line 29, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/esms.scss */
+.esms-choose-item select {
+  width: 100%;
+}
+
+/* line 34, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/esms.scss */
+h1.temp-sector-result {
+  text-align: center;
+  color: #b0b0b0;
+  font-size: 1.5em;
+  font-weight: 200;
+  font-style: italic;
+  position: relative;
+  top: 30%;
 }
 
 /*

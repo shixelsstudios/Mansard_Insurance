@@ -13,7 +13,8 @@ define([
     'views/KYCView',
     'views/NavView',
     'views/CartView',
-    'views/SavePolicyView'
+    'views/SavePolicyView',
+    'views/ESMSView'
     ],
     function (
     Mansard, 
@@ -30,7 +31,8 @@ define([
     KYCView,
     NavView,
     CartView,
-    SavePolicyView
+    SavePolicyView,
+    ESMSView
     ){
     return Backbone.Marionette.Controller.extend({
         initialize:function (options) {
@@ -117,6 +119,14 @@ define([
                     Mansard.headerRegion.show(new DesktopHeaderView({title: 'Save Policy - Life', button: 'fa fa-shopping-cart', menu: 'cart-button', isCart: true, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
                 }
                 Mansard.mainAppRegion.show(new SavePolicyView({type: type}));
+            } else {
+                this.login();
+            }
+        },
+        esms: function() {
+            if (Mansard.isLoggedIn) {
+                Mansard.headerRegion.show(new DesktopHeaderView({title: 'Environmental and Social Risk Management System (ESMS)', button: 'fa fa-shopping-cart', menu: 'cart-button', isCart: true, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
+                Mansard.mainAppRegion.show(new ESMSView());
             } else {
                 this.login();
             }
