@@ -21,7 +21,6 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                     three: {section: '3', questions: []},
                     four: {section: '4', questions: []}
                 };
-
                 for (var i = 0; i < this.questions.length; i++) {
                     this.questions[i].options = Mansard.api.discovery_options(this.questions[i].QuestionID);
                     if (this.questions[i].SectionID === '2') {

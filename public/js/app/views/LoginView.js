@@ -5,7 +5,8 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             template: template,
             // View Event Handlers
             events: {
-                'click .login-button': 'handleLogin'
+                'click .login-button': 'handleLogin',
+                'click .continue-button': 'handleContinue'
             },
             onRender: function () {
             // get rid of that pesky wrapping-div
@@ -26,6 +27,20 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                     console.log(credentials);
                     Mansard.api.login(credentials);
                 }
+            },
+            handleContinue: function(e) {
+                e.preventDefault();
+
+                var agentcode = $('.login-agentcode').val();
+
+                if (agentcode) {
+                    Mansard.api.isFA(agentcode);
+                } else {
+                    $('.login-error').html('<div class="alert alert-warning" role="alert">Please enter agent code!</div>');
+                }
+
+                $('.continue-button').html('<i class="fa fa-spinner fa-spin"></i>');
+                $('.continue-button').attr('disabled', 'disabled');
             }
         });
     });

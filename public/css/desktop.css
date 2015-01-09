@@ -2608,26 +2608,28 @@ form input[type='number']::-webkit-inner-spin-button {
 }
 /* line 12, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
 .login-form .login-input {
-  height: 30px;
-  width: 250px;
+  height: 40px;
+  width: 263px;
+  border-radius: 4px;
+  padding-left: 15px;
 }
-/* line 16, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
+/* line 18, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
 .login-form .login-logo {
   text-align: center;
 }
 
-/* line 21, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
+/* line 23, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
 .login-button-holder button {
   width: 265px;
   height: 40px;
 }
 
-/* line 26, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
+/* line 28, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
 .login-form-input {
   margin: 5% 0;
 }
 
-/* line 30, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
+/* line 32, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
 h1.login-form-title {
   color: #fff;
   font-weight: 400;
@@ -2635,7 +2637,7 @@ h1.login-form-title {
   text-align: center;
 }
 
-/* line 36, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
+/* line 38, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
 h2.login-form-subtitle {
   color: #fff;
   font-weight: 100;
@@ -2643,18 +2645,18 @@ h2.login-form-subtitle {
   text-align: center;
 }
 
-/* line 43, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
+/* line 45, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
 .login-logo img {
   width: 150px;
 }
 
-/* line 48, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
+/* line 50, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
 .login-error .alert.alert-warning {
-  width: 215px;
+  width: 260px;
   text-align: center;
 }
 
-/* line 53, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
+/* line 55, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
 .login-load {
   width: 100%;
   height: 100%;
@@ -2663,7 +2665,7 @@ h2.login-form-subtitle {
   text-align: center;
   z-index: 100;
 }
-/* line 60, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
+/* line 62, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
 .login-load i {
   font-size: 5em;
   position: relative;
@@ -2671,13 +2673,18 @@ h2.login-form-subtitle {
   color: #e35522;
 }
 
-/* line 68, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
+/* line 70, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
 .login-overlay {
   width: 100%;
   height: 100%;
   background: #33393d;
   opacity: 0.6;
   position: absolute;
+  display: none;
+}
+
+/* line 79, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/login.scss */
+.login-agent-code {
   display: none;
 }
 

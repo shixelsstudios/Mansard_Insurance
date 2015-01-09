@@ -44,22 +44,28 @@ define([
             if (!Mansard.isLoggedIn) {
              Mansard.fullAppRegion.show(new LoginView());
             } else {
-                this.dashboard();
+                Mansard.appRouter.navigate('#dashboard/customer', {trigger: true});
             }
         },
         login: function() {
             if (!Mansard.isLoggedIn) {
              Mansard.fullAppRegion.show(new LoginView());
             } else {
-                this.dashboard();
+                Mansard.appRouter.navigate('#dashboard/customer', {trigger: true});
             }
         },
-        dashboard: function() {
+        dashboard: function(type) {
             if (Mansard.isLoggedIn) {
-                Mansard.headerRegion.show(new DesktopHeaderView({title: 'Customer Search', button: 'fa fa-plus', menu: 'add-contact-button', isCart: false, nav: 'fa fa-bars', nav_button: 'main-menu-button'}));
-                Mansard.mainAppRegion.show(new SearchView()); 
+                if (type === 'customer') {
+                    Mansard.headerRegion.show(new DesktopHeaderView({title: 'Customer Search', button: 'fa fa-plus', menu: 'add-contact-button', isCart: false, nav: 'fa fa-bars', nav_button: 'main-menu-button'}));
+                    Mansard.mainAppRegion.show(new SearchView({type: type})); 
+                } else if (type === 'contact') {
+                    Mansard.headerRegion.show(new DesktopHeaderView({title: 'Contact Search', button: 'fa fa-plus', menu: 'add-contact-button', isCart: false, nav: 'fa fa-bars', nav_button: 'main-menu-button'}));
+                    Mansard.mainAppRegion.show(new SearchView({type: type}));
+                }
+               
            } else {
-               this.login();
+               Mansard.appRouter.navigate('#login', {trigger: true});
            }
            
         },

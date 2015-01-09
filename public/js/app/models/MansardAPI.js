@@ -29,12 +29,16 @@ define([
                 url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/MobileLogin/atu?CustomerNo=0&passcode=0&Username=' + credentials.username + '&Password=' + credentials.password,
                 type: 'POST',
                 success: function (rData) {
-
-                    if (rData.username) {
+                    if (rData.username && rData.isFirstTimeLogin) {
+                        $('.login-form-form').hide();
+                        $('.login-agent-code').show();
+                    } else if (rData.username && !rData.isFirstTimeLogin) {
                         self.session(JSON.stringify(rData));
-                        window.location('#dashboard'); 
+                        Mansard.appRouter.navigate('dashboard/customer', {trigger: true});
+                        location.reload();
                     }
                     else {
+                        
                         $('.login-error').html('<div class="alert alert-warning" role="alert">Incorrect Username and/or Password!</div>')
                         $('.login-button').html('Login');
                         $('.login-button').removeAttr('disabled');
@@ -44,7 +48,7 @@ define([
         },
         logout: function() {
             localStorage.removeItem('session');
-            window.location('#');
+            window.location.hash = '';
             Mansard.isLoggedIn = false;
         },
         search: function(query) {
@@ -65,11 +69,20 @@ define([
             });
         },
         isFA: function(agent_code) {
+            var self = this;
             $.ajax({
                     url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Agent/Get?agentCode=' + agent_code,
                     type: 'GET',
                     success: function (rData) {
-                    console.log(rData.NeedsSalesDiary);
+                     if (rData.NeedsSalesDiary) {
+                        self.session(JSON.stringify(rData));
+                        Mansard.appRouter.navigate('dashboard/contact', {trigger: true});
+                        location.reload();
+                     } else {
+                        self.session(JSON.stringify(rData));
+                        Mansard.appRouter.navigate('dashboard/customer', {trigger: true});
+                        location.reload();
+                     }
                 }
             });
         },
@@ -385,6 +398,19 @@ define([
                 );
             }
             return params;
+        },
+        esms: function(sectionID) {
+            var send = null;
+            $.ajax({
+                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/ESMS/GetSectionQuestions?sectionID=' + sectionID + '&isCorporate=True',
+                type: 'GET',
+                async: false,
+                success: function(res) {
+                    send = res;
+                }
+            });
+
+            return send;
         }
     });
 

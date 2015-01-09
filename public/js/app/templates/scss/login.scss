@@ -10,8 +10,10 @@
 	height: 600px;
 	padding-top: 5%;
 	.login-input {
-		height: 30px;
-		width: 250px;
+		height: 40px;
+		width: 263px;
+		border-radius: 4px;
+		padding-left: 15px;
 	}
 	.login-logo {
 		text-align: center;
@@ -46,7 +48,7 @@ width: 150px;
 
 .login-error {
 	.alert.alert-warning {
-		width: 215px;
+		width: 260px;
 		text-align: center;
 	}
 }
@@ -72,4 +74,8 @@ background: $profile_grey;
 opacity: 0.6;
 position: absolute;
 display:none;
+}
+
+.login-agent-code {
+	display: none;
 }
