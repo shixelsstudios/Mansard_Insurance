@@ -32,7 +32,7 @@ define(['jquery', 'hbs!templates/desktopHeader', 'backbone','models/Model', 'vie
                 $('#main-nav-container, #right-area-container').animate({'left': '0%'});
             },
             addContact: function(e) {
-                e.preventDefault()
+                e.preventDefault();
                 Mansard.appRouter.navigate('#contact/add', {trigger: true}); 
             },
             goBack: function() {

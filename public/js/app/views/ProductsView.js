@@ -61,7 +61,7 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
 
                 var quote_against = $('.motor-drop').find('option:selected');
 
-                $('.temp-search-result').hide()
+                $('.temp-search-result').hide();
                 $('.quote-title').html(quote_against.val());
                 $('.quote-question-1').html('<label class="quote-question-1-label">Current value of vehicle(Sum Assured):</label><input class="quote-question-1-q" type="text" placeholder="e.g. 100,000">');
                 $('.quote-question-2').html('<label class="quote-question-2-label">Vehicle Category:</label><select class="quote-question-2-q"><option value="0">--Select Vehicle Category--</option><option value="1">Saloon</option><option value="95">SUV</option></select>');
@@ -78,7 +78,7 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
 
                 var quote_against = $('.life-drop').find('option:selected');
 
-                $('.temp-search-result').hide()
+                $('.temp-search-result').hide();
                 this.product.product_type = quote_against.data('productcode');
                 this.product.name = quote_against.val();
                 this.product.product_id = quote_against.data('productid');
@@ -116,7 +116,7 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
 
                 var policy_type = this.product.product_id;
                 var data = {
-                    policy: policy_type,
+                    policy: policy_type
                 };
                 var quote_result = Mansard.api.quote('life', data);
                 this.product.quote = quote_result;

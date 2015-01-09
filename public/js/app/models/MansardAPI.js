@@ -39,7 +39,7 @@ define([
                     }
                     else {
                         
-                        $('.login-error').html('<div class="alert alert-warning" role="alert">Incorrect Username and/or Password!</div>')
+                        $('.login-error').html('<div class="alert alert-warning" role="alert">Incorrect Username and/or Password!</div>');
                         $('.login-button').html('Login');
                         $('.login-button').removeAttr('disabled');
                     }
@@ -385,7 +385,7 @@ define([
                     _.map(decodeURI(queryString).split(/&/g),function(el,i){
                         var aux = el.split('='), o = {};
                         if(aux.length >= 1){
-                            var val = undefined;
+                            var val = null;
                             if(aux.length == 2)
                                 val = aux[1];
                             o[aux[0]] = val;

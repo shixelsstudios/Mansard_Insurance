@@ -31,10 +31,10 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                         OwnerUsername: Mansard.currentUser,
                         PlaceOfWork: $('.contact-add-PlaceOfWork').val(),
                         Gender: $('.contact-add-Gender').val()
-                    }
+                    };
                     Mansard.api.save_contact(contact);
                 } else {
-                    $('.contact-add-form-error').html('<div class="alert alert-warning" role="alert">Please fill out all fields!</div>')
+                    $('.contact-add-form-error').html('<div class="alert alert-warning" role="alert">Please fill out all fields!</div>');
                 }
 
                 

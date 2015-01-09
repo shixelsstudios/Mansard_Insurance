@@ -19,7 +19,7 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                 var nameTrim = name.substring(0, 12);
                 var keepFullName = this.result.Fullname;
                 var keepEmail = this.result.email;
-                var truncateName = nameTrim + '[..]'
+                var truncateName = nameTrim + '[..]';
                 var truncateEmail = emailTrim + '[..]';
                 this.result.Fullname =  truncateName; //Truncate content after 6th character
                 
