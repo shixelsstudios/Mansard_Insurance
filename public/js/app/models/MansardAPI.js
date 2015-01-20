@@ -411,6 +411,44 @@ define([
             });
 
             return send;
+        },
+        dashboard: function(agentCode) {
+            var send = {};
+
+            $.ajax({
+                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Agent/GetTotalLifePremiumPaid?agentCode=' + agentCode,
+                type: 'GET',
+                async: false,
+                success: function(res) {
+                    send.life = res;
+                }
+            });
+
+            $.ajax({
+                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Agent/GetTotalNonLifePremiumPaid?agentCode=' + agentCode,
+                type: 'GET',
+                async: false,
+                success: function(res) {
+                    send.nonlife = res;
+                }
+
+            });
+
+            $.ajax({
+                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Agent/GetTotalClaimsPaid?agentCode=' + agentCode,
+                type: 'GET',
+                async: false,
+                success: function(res) {
+                    send.claims = res;
+                }
+
+            });
+
+            return send;
+            
+        },
+        digits: function(number) {
+            return number.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"); 
         }
     });
 

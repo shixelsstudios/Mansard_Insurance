@@ -2395,14 +2395,24 @@ form input[type='number']::-webkit-inner-spin-button {
   padding: 0 10%;
 }
 /* line 18, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/profile.scss */
+#user-profile-container .profile-view .profile-info p {
+  font-size: 11px;
+}
+/* line 22, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/profile.scss */
+#user-profile-container .profile-view .profile-info .dash-bold {
+  font-weight: bold;
+  color: #e35522;
+}
+/* line 27, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/profile.scss */
 #user-profile-container .profile-view .profile-info .profile-info-personal {
   text-align: center;
 }
-/* line 20, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/profile.scss */
+/* line 29, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/profile.scss */
 #user-profile-container .profile-view .profile-info .profile-info-personal .bold {
   font-weight: bold;
+  color: #e35522;
 }
-/* line 25, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/profile.scss */
+/* line 35, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/profile.scss */
 #user-profile-container .profile-view .profile-picture {
   width: 120px;
   height: 120px;
@@ -2413,7 +2423,7 @@ form input[type='number']::-webkit-inner-spin-button {
   border: 3px solid #e35522;
 }
 
-/* line 37, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/profile.scss */
+/* line 47, /Users/nerdycoolkid/Documents/Repos/Mansard_Insurance/public/scss/../js/app/templates/scss/profile.scss */
 .progress-bar.progress-bar-warning {
   background: #e35522;
 }

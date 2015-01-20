@@ -15,10 +15,20 @@
 			font-weight: 100;
 			padding: 0 10%;
 
+			p {
+				font-size: 11px;
+			}
+
+			.dash-bold {
+				font-weight: bold;
+				color: $primary_orange;
+			}
+
 			.profile-info-personal {
 				text-align: center;
 				.bold {
 					font-weight: bold;
+					color: $primary_orange;
 				}
 			}
 		}

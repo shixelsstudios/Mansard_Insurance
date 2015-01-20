@@ -10,25 +10,21 @@
 			{{#if agent.Division}}<p><span class="bold">Division:</span> {{agent.Division}}</p>{{/if}}
 		</div>
 
-		<p>Budget: 2014</p>
+		<p>Total Life Premium YTD</p>
+		<p><span class="dash-bold">Target:</span> NGN{{graphs.life.Target}} | <span class="dash-bold">YTD:</span> NGN{{graphs.life.YTD}}</p>
 		<div class="progress">
-		  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-		    <span class="sr-only">60% Complete</span>
+		  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{graphs.lifeperc}}%">
+		    <span class="sr-only">{{graphs.lifeperc}}% Complete</span>
 		  </div>
 		</div>
-		<p>Runrate: 15m</p>
-
-		<p>Profit: 2014</p>
+		
+		<p>Total Non Life Premium YTD</p>
+		<p><span class="dash-bold">Target:</span> NGN{{graphs.nonlife.Target}} | <span class="dash-bold">YTD:</span> NGN{{graphs.nonlife.YTD}}</p>
 		<div class="progress">
-		  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-		    <span class="sr-only">60% Complete</span>
+		  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{graphs.nonlifeperc}}%">
+		    <span class="sr-only">{{graphs.nonlifeperc}}% Complete</span>
 		  </div>
 		</div>
-		<p>Claims: 2014</p>
-		<div class="progress">
-		  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-		    <span class="sr-only">60% Complete</span>
-		  </div>
-		</div>
+		<p><span class="dash-bold">Total Claims Paid YTD</span>: NGN{{graphs.claims.YTD}}</p>
 	</div>
 </div>
