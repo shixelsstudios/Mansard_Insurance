@@ -1,7 +1,7 @@
 <div class="save-policy-view">
 	{{#if isMotor}}
 	<form class="policy-motor-form">
-		<div class="policy-motor-form-1">
+		<div class="policy-motor-form-1 policy-motor-form-page">
 			<h1>1. Basic Information</h1>
 			<label>Insurance Start Date</label>
 			<div class="policy-item-large">
@@ -117,14 +117,17 @@
 				<label>Sum insured/Value of the vehicle</label>
 					<input type="text" class="save-policy-value">
 			</div>
-			<button class="policy-next btn btn-primary pull-right">Next</button>
+			<button class="policy-next btn btn-primary pull-right to-motor-2">Next</button>
 		</div>
-		<div class="policy-motor-form-2">
+		<div class="policy-motor-form-2 policy-motor-form-page">
 			<h1>2. Pictures of the vehicle</h1>
 			<div class="policy-item">
 				<label>Front of Car</label>
 				<input type="file">
 			</div>
+			<div class="clear-fix"></div>
+			<button class="policy-next btn btn-secondar pull-left to-motor-1">Back</button>
+			<button class="policy-next btn btn-primary pull-right submit-motor-policy">Submit Policy</button>
 		</div>
 	</form>
 	{{else}}

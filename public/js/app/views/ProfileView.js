@@ -15,30 +15,37 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
 
                 if (localStorage.getItem("session")) {
                     var jsonObject = JSON.parse(localStorage.getItem("session"));
+                    var hasGraphs = null;
 
                     this.session_token = jsonObject.session_token;
 
                     this.agent = JSON.parse(JSON.parse(jsonObject.agent)); 
 
-                    this.graphs = Mansard.api.dashboard(this.agent.AgentCode);
+                    this.graphs = Mansard.api.dashboard(this.agent.AgentCode, this.agent.username);
                     
-                    var nonlifeperc = (this.graphs.nonlife.YTD / this.graphs.nonlife.Target) * 100;
-                    var lifeperc = (this.graphs.life.YTD / this.graphs.life.Target) * 100;
+                    if (this.graphs.nonlife) {
+                        hasGraphs = true;
+                        var nonlifeperc = (this.graphs.nonlife.YTD / this.graphs.nonlife.Target) * 100;
+                        var lifeperc = (this.graphs.life.YTD / this.graphs.life.Target) * 100;
 
-                    this.graphs.nonlifeperc = nonlifeperc;
-                    this.graphs.lifeperc = lifeperc;
+                        this.graphs.nonlifeperc = nonlifeperc;
+                        this.graphs.lifeperc = lifeperc;
 
-                    this.graphs.claims.Target = Mansard.api.digits(this.graphs.claims.Target);
-                    this.graphs.life.Target = Mansard.api.digits(this.graphs.life.Target);
-                    this.graphs.nonlife.Target = Mansard.api.digits(this.graphs.nonlife.Target);
+                        this.graphs.claims.Target = Mansard.api.digits(this.graphs.claims.Target);
+                        this.graphs.life.Target = Mansard.api.digits(this.graphs.life.Target);
+                        this.graphs.nonlife.Target = Mansard.api.digits(this.graphs.nonlife.Target);
 
-                    this.graphs.nonlife.YTD = Mansard.api.digits(this.graphs.nonlife.YTD);
-                    this.graphs.life.YTD = Mansard.api.digits(this.graphs.life.YTD);
+                        this.graphs.nonlife.YTD = Mansard.api.digits(this.graphs.nonlife.YTD);
+                        this.graphs.life.YTD = Mansard.api.digits(this.graphs.life.YTD);
 
+                    } else {
+                    hasGraphs = false;
+                    }
+                    
 
                     console.log(this.graphs);
 
-                    this.model = new Model({agent: this.agent, graphs: this.graphs});
+                    this.model = new Model({agent: this.agent, graphs: this.graphs, hasGraphs: hasGraphs});
                 }
 
                 

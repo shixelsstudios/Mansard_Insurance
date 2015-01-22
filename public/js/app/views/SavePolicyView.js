@@ -11,7 +11,11 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             events: {
                 'change .save-policy-product': 'populatePeriods',
                 'change .save-policy-payment-period': 'matchPeriodsToPay',
-                'change .save-policy-insurance-period': 'matchPeriodsToIns'
+                'change .save-policy-insurance-period': 'matchPeriodsToIns',
+                'click .to-motor-2': 'goToMotor2',
+                'click .to-motor-1': 'goToMotor1',
+                'click .submit-motor-policy': 'submitMotor'
+
             },
             initialize: function(options) {
 
@@ -68,6 +72,20 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                 var matchVal = $('.save-policy-insurance-period').val();
 
                 $('.save-policy-payment-period').val(matchVal);
+            },
+            goToMotor1: function(e){
+                e.preventDefault()
+                $('.policy-motor-form-page').hide();
+                $('.policy-motor-form-1').show()
+            },
+            goToMotor2: function(e){
+                 e.preventDefault()
+                $('.policy-motor-form-page').hide();
+                $('.policy-motor-form-2').show()
+            },
+            submitMotor: function(e){
+                 e.preventDefault()
+
             }
         });
     });

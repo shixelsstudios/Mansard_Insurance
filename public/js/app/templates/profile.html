@@ -10,6 +10,7 @@
 			{{#if agent.Division}}<p><span class="bold">Division:</span> {{agent.Division}}</p>{{/if}}
 		</div>
 
+		{{#if hasGraphs}}
 		<p>Total Life Premium YTD</p>
 		<p><span class="dash-bold">Target:</span> NGN{{graphs.life.Target}} | <span class="dash-bold">YTD:</span> NGN{{graphs.life.YTD}}</p>
 		<div class="progress">
@@ -26,5 +27,6 @@
 		  </div>
 		</div>
 		<p><span class="dash-bold">Total Claims Paid YTD</span>: NGN{{graphs.claims.YTD}}</p>
+		{{/if}}
 	</div>
 </div>

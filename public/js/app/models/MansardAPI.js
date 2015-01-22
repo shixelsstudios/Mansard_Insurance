@@ -68,10 +68,10 @@ define([
                 }
             });
         },
-        isFA: function(agent_code) {
+        isFA: function(agent_code, username) {
             var self = this;
             $.ajax({
-                    url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Agent/Get?agentCode=' + agent_code,
+                    url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Agent/Get?agentCode=' + agent_code +'&username=' + username,
                     type: 'GET',
                     success: function (rData) {
                      if (rData.NeedsSalesDiary) {
