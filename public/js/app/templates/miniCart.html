@@ -3,7 +3,7 @@
 		{{#if items}}
 			<ul class="mini-cart-items-holder">
 			{{#each items}}
-				<li class="mini-cart-item" data-itempos="{{pos}}">
+				<li class="mini-cart-item" data-itempos="{{pos}}" id="{{miniItemID}}">
 					<div class="row">
 						<div class="col-md-2">
 							<div class="mini-cart-item-img"><img src="img/{{img}}"></div>
@@ -16,7 +16,7 @@
 						</div>
 						<div class="col-md-2">
 							<div class="mini-cart-action">
-								<div class="mini-cart-item-remove"><i class="fa fa-times"></i></div>
+								<div class="mini-cart-item-remove" data-itemid="{{miniItemID}}"><i class="fa fa-times"></i></div>
 								<div class="clear-fix"></div>
 							</div>
 						</div>
@@ -29,7 +29,7 @@
 		{{/if}}
 	</div>
 	<div class="mini-cart-footer">
-		<div class="mini-cart-total"><span class="mini-total">Total </span>&#8358; {{total}}</div>
+		<div class="mini-cart-total"><span class="mini-total">Total </span>&#8358; <span class="mini-card-total-holder">{{total}}</span></div>
 
 		<button class="btn btn-primary mini-checkout-button">Checkout</button>
 		<a class="full-cart-view" href="#cart">View Cart</a>

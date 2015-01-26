@@ -7,7 +7,8 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             model: null,
             // View Event Handlers
             events: {
-                'click .view-full-profile': 'viewProfile'
+                'click .view-full-profile': 'viewProfile',
+                'click .add-policys': 'addPolicy'
             },
             initialize: function(options) {
                 this.quickResult = options.quickResult;
@@ -32,6 +33,11 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                    }
                 }
                 return str.join("&");
+            },
+            addPolicy: function(e) {
+                e.preventDefault();
+                window.location = '#products/' + this.quickResult.CustomerNo;
+                //console.log(Mansard.customer);
             }
         });
     });

@@ -26,7 +26,7 @@ define([
         Mansard.api = new MansardAPI();
         Mansard.cart = new MansardCart();
         Mansard.discovery_questions = Mansard.api.discovery_quesions();
-        Mansard.cart.items = [{name: 'product1', qty:1, price: 5000, customer: '3100001536'}, {name: 'product2', qty: 2, price: 1000000, customer:'3100001536'}];
+        Mansard.cart.items = [];
         Mansard.env = "dev";
         Mansard.customer = null;
 

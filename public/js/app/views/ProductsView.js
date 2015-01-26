@@ -22,6 +22,7 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             initialize: function() {
                 this.motor_products = Mansard.api.products('motor');
                 this.life_products = Mansard.api.products('life');
+                var quoteButton = null;
 
                 for (var i =0; i < this.motor_products.length; i++) {
                     if (this.motor_products[i].IsWholeLife) {
@@ -38,7 +39,12 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                     }
                 }
                 this.product = {};
-                this.model = new Model({motor: this.motor_products, life: this.life_products});
+                if (!Mansard.customer) {
+                    quoteButton = '<button class="btn btn-secondary add-to-customer-button">Add to Customer</button>';
+                } else {
+                    quoteButton = '<button class="btn btn-secondary add-to-cart-button">Add to Cart</button>';
+                }
+                this.model = new Model({motor: this.motor_products, life: this.life_products, quoteButton: quoteButton});
             },
             onRender: function () {
             // get rid of that pesky wrapping-div
@@ -104,10 +110,14 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                     };
                     this.product.sumassured = data.sumassured;
                     this.product.bodytype = data.bodyTypeCode;
+                    this.product.img = 'default_product.png';
                     var quote_result = Mansard.api.quote('motor', data);
+                    quote_result = quote_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     this.product.quote = quote_result;
                     this.product.qty = 1;
-                    $('.quote_amount').html(quote_result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                    this.product.customer = Mansard.customer;
+                    this.product.price = quote_result;
+                    $('.quote_amount').html(quote_result);
                     $('.quote_value').slideDown();
                     $('.quote-form').slideUp();
                 }
@@ -123,13 +133,27 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                 this.product.qty = 1;
                 if (!quote_result.summassured) {
                     quote_result.summassured = '0';
+                } else {
+                    quote_result = quote_result.summassured.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 }
-                $('.quote_amount').html(quote_result.summassured.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                this.product.price = quote_result;
+                this.product.img = 'default_product.png';
+                this.product.customer = Mansard.customer;
+                $('.quote_amount').html(quote_result);
                 $('.quote_value').slideDown();
                 $('.quote-form').slideUp();
             },
             addToCart: function() {
                 Mansard.cart.add(this.product);
+                for (var i = 0; i < Mansard.cart.items.length; i++) {
+                    Mansard.cart.items[i].pos = i;
+                    Mansard.cart.total += Mansard.cart.items[i].price.replace(/\D/g,'');;
+                }
+
+                if (this.total) {
+                    this.total = this.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                }
+                $('.mini-card-total-holder').html(this.total);
                 $('.cart-num').html(Mansard.cart.count());
             },
             handleBack: function() {

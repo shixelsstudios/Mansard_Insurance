@@ -69,8 +69,11 @@ define([
            }
            
         },
-        products: function() {
+        products: function(customer) {
             if (Mansard.isLoggedIn) {
+                if (customer) {
+                    Mansard.customer = customer;
+                }
                 Mansard.headerRegion.show(new DesktopHeaderView({title: 'Products Search', button: 'fa fa-shopping-cart', menu: 'cart-button', isCart: true, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
                 Mansard.mainAppRegion.show(new ProductsView());
             } else {

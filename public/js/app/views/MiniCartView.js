@@ -8,7 +8,7 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             total: null,
             // View Event Handlers
             events: {
-
+                'click .mini-cart-item-remove': 'removeItem'
             },
             initialize: function() {
 
@@ -20,11 +20,14 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
 
                 for (var i = 0; i < this.items.length; i++) {
                     this.items[i].pos = i;
-                    this.items[i].img = 'default_product.png';
                     this.total += this.items[i].price;
                     this.items[i].price = this.items[i].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 }
-                this.total = this.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+                if (this.total) {
+                    this.total = this.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                }
+                
                 this.model = new Model({items: this.items, total: this.total});
             },
             onRender: function () {
@@ -32,6 +35,10 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             // assumes 1 child element.
 				this.$el = this.$el.children();
 				this.setElement(this.$el);
-			}
+			},
+            removeItem: function(e) {
+                e.preventDefault();
+                console.log($(this).parent().parent());
+            }
         });
     });
