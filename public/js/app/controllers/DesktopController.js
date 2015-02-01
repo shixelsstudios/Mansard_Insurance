@@ -12,9 +12,9 @@ define([
     'views/DiscoveryQuestionsView',
     'views/KYCView',
     'views/NavView',
-    'views/CartView',
     'views/SavePolicyView',
-    'views/ESMSView'
+    'views/ESMSView',
+    'views/PaymentView'
     ],
     function (
     Mansard, 
@@ -30,9 +30,9 @@ define([
     DiscoveryQuestionsView,
     KYCView,
     NavView,
-    CartView,
     SavePolicyView,
-    ESMSView
+    ESMSView,
+    PaymentView
     ){
     return Backbone.Marionette.Controller.extend({
         initialize:function (options) {
@@ -44,25 +44,32 @@ define([
             if (!Mansard.isLoggedIn) {
              Mansard.fullAppRegion.show(new LoginView());
             } else {
-                Mansard.appRouter.navigate('#dashboard/customer', {trigger: true});
+                if (Mansard.isFA) {
+                    Mansard.appRouter.navigate('dashboard', {trigger: true});
+                } else {
+                    Mansard.appRouter.navigate('dashboard', {trigger: true});
+                   // Mansard.appRouter.navigate('products', {trigger: true});
+                }
             }
         },
         login: function() {
             if (!Mansard.isLoggedIn) {
              Mansard.fullAppRegion.show(new LoginView());
             } else {
-                Mansard.appRouter.navigate('#dashboard/customer', {trigger: true});
+               if (Mansard.isFA) {
+                    Mansard.appRouter.navigate('dashboard', {trigger: true});
+                } else {
+                    Mansard.appRouter.navigate('dashboard', {trigger: true});
+                    //Mansard.appRouter.navigate('products', {trigger: true});
+                }
             }
         },
-        dashboard: function(type) {
+        dashboard: function(tempProduct) {
+            tempProduct = Mansard.api.parseQueryString(tempProduct);
+            console.log(tempProduct);
             if (Mansard.isLoggedIn) {
-                if (type === 'customer') {
-                    Mansard.headerRegion.show(new DesktopHeaderView({title: 'Customer Search', button: 'fa fa-plus', menu: 'add-contact-button', isCart: false, nav: 'fa fa-bars', nav_button: 'main-menu-button'}));
-                    Mansard.mainAppRegion.show(new SearchView({type: type})); 
-                } else if (type === 'contact') {
-                    Mansard.headerRegion.show(new DesktopHeaderView({title: 'Contact Search', button: 'fa fa-plus', menu: 'add-contact-button', isCart: false, nav: 'fa fa-bars', nav_button: 'main-menu-button'}));
-                    Mansard.mainAppRegion.show(new SearchView({type: type}));
-                }
+                Mansard.headerRegion.show(new DesktopHeaderView({title: 'Customer & Contact Search', button: 'fa fa-shopping-cart', menu: 'cart-button', isCart: true, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
+                Mansard.mainAppRegion.show(new SearchView({tempProduct: tempProduct})); 
                
            } else {
                Mansard.appRouter.navigate('#login', {trigger: true});
@@ -83,6 +90,14 @@ define([
         contactAdd: function() {
             if (Mansard.isLoggedIn) {
                 Mansard.headerRegion.show(new DesktopHeaderView({title: 'Add a Contact', button: 'fa fa-plus', menu: 'add-contact-button', isCart: false, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
+                Mansard.mainAppRegion.show(new ContactAddView());
+            } else {
+                this.login();
+            }
+        },
+        customerAdd: function() {
+            if (Mansard.isLoggedIn) {
+                Mansard.headerRegion.show(new DesktopHeaderView({title: 'Add a Customer', button: 'fa fa-plus', menu: 'add-contact-button', isCart: false, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
                 Mansard.mainAppRegion.show(new ContactAddView());
             } else {
                 this.login();
@@ -113,22 +128,10 @@ define([
                 this.login();
             }
         },
-        cart: function() {
+        policy: function() {
             if (Mansard.isLoggedIn) {
-                Mansard.headerRegion.show(new DesktopHeaderView({title: 'Cart', button: 'fa fa-shopping-cart', menu: 'cart-button', isCart: true, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
-                Mansard.mainAppRegion.show(new CartView());
-            } else {
-                this.login();
-            }
-        },
-        policy: function(type) {
-            if (Mansard.isLoggedIn) {
-                if (type === 'motor') {
-                    Mansard.headerRegion.show(new DesktopHeaderView({title: 'Save Policy - Motor', button: 'fa fa-shopping-cart', menu: 'cart-button', isCart: true, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
-                } else if (type === 'life') {
-                    Mansard.headerRegion.show(new DesktopHeaderView({title: 'Save Policy - Life', button: 'fa fa-shopping-cart', menu: 'cart-button', isCart: true, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
-                }
-                Mansard.mainAppRegion.show(new SavePolicyView({type: type}));
+                Mansard.headerRegion.show(new DesktopHeaderView({title: 'Save Policy', button: 'fa fa-shopping-cart', menu: 'cart-button', isCart: true, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
+                Mansard.mainAppRegion.show(new SavePolicyView());
             } else {
                 this.login();
             }
@@ -140,6 +143,14 @@ define([
             } else {
                 this.login();
             }
+        },
+        payment: function(){
+           if (Mansard.isLoggedIn) {
+                Mansard.headerRegion.show(new DesktopHeaderView({title: 'Policy Payment', button: 'fa fa-shopping-cart', menu: 'cart-button', isCart: true, nav: 'fa fa-chevron-left', nav_button: 'back-menu-button'}));
+                Mansard.mainAppRegion.show(new PaymentView());
+            } else {
+                this.login();
+            } 
         }
     });
 });

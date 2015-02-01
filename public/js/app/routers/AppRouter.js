@@ -4,16 +4,17 @@ define(['backbone', 'marionette'], function(Backbone, Marionette) {
        appRoutes: {
            "": "index",
            "login": "login",
-           "dashboard/:type": "dashboard",
+           "dashboard": "dashboard",
+           "dashboard?*tempProduct": "dashboard",
            "products": "products",
-           "products/:customer": "products",
            "contact/add": "contactAdd",
+           "customer/add": "contactAdd",
            "customer?*user": "customer",
            "discovery": "discovery",
            "kyc": "kyc",
-           "cart": "cart",
-           "policy/save/:type": 'policy',
-           "esms": "esms"
+           "policy/save/:count": 'policy',
+           "esms": "esms",
+           "payment": "payment"
        }
    });
 });

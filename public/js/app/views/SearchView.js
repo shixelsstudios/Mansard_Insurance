@@ -3,14 +3,19 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
         //ItemView provides some default rendering logic
         return Backbone.Marionette.ItemView.extend( {
             template: template,
-
-            defaults: {
-                model: null,
-                searchStore: null
-            },
+            model: null,
+            searchStore: null,
+            tempProduct: null,
             // View Event Handlers
             events: {
                 'keyup .customer-search': 'searchHandler'
+            },
+            initialize: function(options) {
+                if (options && options.tempProduct) {
+                    this.tempProduct = options.tempProduct;
+                    console.log(options, options.tempProduct);
+                }
+                
             },
             onRender: function () {
             // get rid of that pesky wrapping-div

@@ -17,7 +17,8 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                 'click .quote-motor-button-btn': 'getMotorQuote',
                 'click .quote-life-button-btn': 'getLifeQuote',
                 'click .add-to-cart-button': 'addToCart',
-                'click .back-menu-button': 'handleBack'
+                'click .back-menu-button': 'handleBack',
+                'click .add-to-customer-button': 'getCustomer'
             },
             initialize: function() {
                 this.motor_products = Mansard.api.products('motor');
@@ -44,7 +45,7 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                 } else {
                     quoteButton = '<button class="btn btn-secondary add-to-cart-button">Add to Cart</button>';
                 }
-                this.model = new Model({motor: this.motor_products, life: this.life_products, quoteButton: quoteButton});
+                this.model = new Model({motor: this.motor_products, life: this.life_products, quoteButton: quoteButton, total: Mansard.cart.total()});
             },
             onRender: function () {
             // get rid of that pesky wrapping-div
@@ -66,30 +67,33 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                 e.preventDefault();
 
                 var quote_against = $('.motor-drop').find('option:selected');
-
+                $('.quote-form').slideDown();
+                $('.quote_value').slideUp();
                 $('.temp-search-result').hide();
                 $('.quote-title').html(quote_against.val());
                 $('.quote-question-1').html('<label class="quote-question-1-label">Current value of vehicle(Sum Assured):</label><input class="quote-question-1-q" type="text" placeholder="e.g. 100,000">');
                 $('.quote-question-2').html('<label class="quote-question-2-label">Vehicle Category:</label><select class="quote-question-2-q"><option value="0">--Select Vehicle Category--</option><option value="1">Saloon</option><option value="95">SUV</option></select>');
-                $('.quote-button').html('<button class="btn btn-primary quote-motor-button-btn">Get Quote</button>');
+                $('.quote-button').html('<quote-buttonon class="btn btn-primary quote-motor-button-btn">Get Quote</button>');
 
                 this.product.product_type = quote_against.data('productcode');
                 this.product.name = quote_against.val();
                 this.product.product_id = quote_against.data('productid');
                 this.product.product_class = quote_against.data('productclassid');
                 this.product.wholelife = quote_against.data('iswholelife');
+                this.product.paymentOptions = quote_against.data('paymentoptions');
             },
             startLifeQuote: function(e) {
                 e.preventDefault();
-
+                $('.quote_value').slideUp();
                 var quote_against = $('.life-drop').find('option:selected');
-
+                $('.quote-form').slideDown();
                 $('.temp-search-result').hide();
                 this.product.product_type = quote_against.data('productcode');
                 this.product.name = quote_against.val();
                 this.product.product_id = quote_against.data('productid');
                 this.product.product_class = quote_against.data('productclassid');
                 this.product.wholelife = quote_against.data('iswholelife');
+                this.product.paymentOptions = quote_against.data('paymentoptions');
 
                 this.getLifeQuote(this.product.productid);
             },
@@ -117,6 +121,7 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                     this.product.qty = 1;
                     this.product.customer = Mansard.customer;
                     this.product.price = quote_result;
+                    this.product.type = 'motor';
                     $('.quote_amount').html(quote_result);
                     $('.quote_value').slideDown();
                     $('.quote-form').slideUp();
@@ -139,26 +144,30 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                 this.product.price = quote_result;
                 this.product.img = 'default_product.png';
                 this.product.customer = Mansard.customer;
+                this.product.type = 'life';
                 $('.quote_amount').html(quote_result);
                 $('.quote_value').slideDown();
                 $('.quote-form').slideUp();
             },
             addToCart: function() {
                 Mansard.cart.add(this.product);
+                Mansard.cart.last = Mansard.cart.count() - 1;
                 for (var i = 0; i < Mansard.cart.items.length; i++) {
                     Mansard.cart.items[i].pos = i;
-                    Mansard.cart.total += Mansard.cart.items[i].price.replace(/\D/g,'');;
                 }
 
-                if (this.total) {
-                    this.total = this.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                }
-                $('.mini-card-total-holder').html(this.total);
+                $('.mini-card-total-holder').html(Mansard.cart.total());
                 $('.cart-num').html(Mansard.cart.count());
+                $('.temp-search-result').show();
+                $('.quote_value').slideUp();
             },
             handleBack: function() {
                 console.log('back');
                 Backbone.history.back();
+            },
+            getCustomer: function() {
+                Mansard.tempProduct = this.product;
+                Mansard.appRouter.navigate('dashboard', {trigger: true});
             }
         });
     });

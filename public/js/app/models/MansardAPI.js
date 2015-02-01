@@ -33,9 +33,7 @@ define([
                         $('.login-form-form').hide();
                         $('.login-agent-code').show();
                     } else if (rData.username && !rData.isFirstTimeLogin) {
-                        self.session(JSON.stringify(rData));
-                        Mansard.appRouter.navigate('dashboard/customer', {trigger: true});
-                        location.reload();
+                        self.isFA(rData.AgentCode, rData.username);
                     }
                     else {
                         
@@ -53,10 +51,16 @@ define([
         },
         search: function(query) {
             var self = this;
+            var theUrl = null;
             $('.search-results-container').html('<div class="search-load"><i class="fa fa-spinner fa-spin"></i> Searching...</div>');
             $('.results-num').html('-');
+            if (Mansard.isFA) {
+                theUrl = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Contacts/getContactByName?contactname=' + query;
+            } else {
+                theUrl = 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Customer/Post_GetCustomerByName/' + query;
+            }
             $.ajax({
-                url:'https://online.mansardinsurance.com/MansardSalesWebApi/api/Customer/Post_GetCustomerByName/' + query,
+                url: theUrl,
                 success: function (rData) {
                    for (var i = 0; i < rData.length; i++) {
                         var search_result = rData[i];
@@ -75,12 +79,14 @@ define([
                     type: 'GET',
                     success: function (rData) {
                      if (rData.NeedsSalesDiary) {
+                        rData.username = username;
                         self.session(JSON.stringify(rData));
-                        Mansard.appRouter.navigate('dashboard/contact', {trigger: true});
+                        Mansard.appRouter.navigate('dashboard', {trigger: true});
                         location.reload();
                      } else {
+                        rData.username = username;
                         self.session(JSON.stringify(rData));
-                        Mansard.appRouter.navigate('dashboard/customer', {trigger: true});
+                        Mansard.appRouter.navigate('products', {trigger: true});
                         location.reload();
                      }
                 }
@@ -127,27 +133,18 @@ define([
 
             return send;
         },
-        contact: function(name) {
-
-            $.ajax({
-                url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Contacts/getContactByName?contactname=' + name,
-                type: 'GET',                     
-                success: function (rData) {
-                    console.log(rData);
-                }
-            });
-
-        },
-        save_contact: function(data) {
+        save_contact: function(data, save) {
             $.ajax({
                 url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Contacts/Post_SaveContactInfo',
                 type: 'post',
                 data: data,
                 success: function(res) {
-                    $('.contact-add-form')[0].reset();
-                    $('.submit-contact-button').removeAttr('disabled');
-                    $('.submit-contact-button').html('Save Contact');
-                    $('.contact-message').html(res.Message);
+                    if (save) {
+                        $('.contact-add-form')[0].reset();
+                        $('.submit-contact-button').removeAttr('disabled');
+                        $('.submit-contact-button').html('Save Contact');
+                        $('.contact-message').html(res.Message);
+                    }
             }
 
             });
@@ -334,15 +331,20 @@ define([
             return send;
         },
         convert: function(contact) {
+            var send = null;
+
             $.ajax({
                 url: 'https://online.mansardinsurance.com/MansardSalesWebApi/api/Contacts/Post_ConvertToLead',
                 data: contact,
                 type: 'POST',
+                async: false,
                 success: function(res) {
-                    console.log(res);
+                    send = res;
                 }
 
             });
+
+            return send;
         },
         sectors: function(type) {
             var send = null;

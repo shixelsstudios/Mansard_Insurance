@@ -3,11 +3,20 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
         //ItemView provides some default rendering logic
         return Backbone.Marionette.ItemView.extend( {
             template: template,
+            model: null,
             // View Event Handlers
             events: {
-                'click .submit-contact-button': 'saveContact'
+                'click .submit-contact-button': 'saveContact',
             },
             initialize: function() {
+                var savebutton = null;
+                if (Mansard.tempProduct && !Mansard.customer) {
+                    savebutton = 'Save & Add to Cart';
+                } else {
+                    savebutton = 'Save Contact';
+                }
+
+                this.model = new Model({savebutton: savebutton});
             },
             onRender: function () {
             // get rid of that pesky wrapping-div
@@ -32,7 +41,27 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                         PlaceOfWork: $('.contact-add-PlaceOfWork').val(),
                         Gender: $('.contact-add-Gender').val()
                     };
-                    Mansard.api.save_contact(contact);
+                    Mansard.api.save_contact(contact, Mansard.customer);
+
+                    if (Mansard.tempProduct && !Mansard.customer) {
+                        var getCust = Mansard.api.convert(contact);
+
+                        Mansard.tempProduct.customer = getCust.CustRowID;
+                        Mansard.cart.add(Mansard.tempProduct);
+
+                        for (var i = 0; i < Mansard.cart.items.length; i++) {
+                            Mansard.cart.items[i].pos = i;
+                            Mansard.cart.total += Mansard.cart.items[i].price.replace(/\D/g,'');;
+                        }
+
+                        if (this.total) {
+                            this.total = this.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        }
+                        $('.mini-card-total-holder').html(this.total);
+                        $('.cart-num').html(Mansard.cart.count());
+                        Mansard.customer = getCust.CustRowID;
+                        Mansard.appRouter.navigate('products', {trigger: true});
+                    }
                 } else {
                     $('.contact-add-form-error').html('<div class="alert alert-warning" role="alert">Please fill out all fields!</div>');
                 }

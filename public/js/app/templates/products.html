@@ -6,7 +6,7 @@
 			<label>Select Motor Product</label>
 			<select class="full-drop motor-drop">
 			 {{#each motor}}
-				  <option data-ProductClassID='{{ProductClassID}}' data-ProductCode='{{ProductCode}}' data-ProductId='{{ProductId}}' data-IsWholeLife='{{IsWholeLife}}' >{{ProductName}}</option>
+				  <option data-PaymentOptions='{{AllowedPaymentOptions}}' data-ProductClassID='{{ProductClassID}}' data-ProductCode='{{ProductCode}}' data-ProductId='{{ProductId}}' data-IsWholeLife='{{IsWholeLife}}' >{{ProductName}}</option>
 			  {{/each}}
 			</select>
 			<button class="btn btn-default quote-motor">Start Quote</button>
@@ -16,7 +16,7 @@
 			<label>Select Life Product</label>
 			<select class="full-drop life-drop">
 			 {{#each life}}
-				  <option data-ProductClassID='{{ProductClassID}}' data-ProductCode='{{ProductCode}}' data-ProductId='{{ProductId}}' data-IsWholeLife='{{IsWholeLife}}' >{{ProductName}}</option>
+				  <option data-PaymentOptions='{{AllowedPaymentOptions}}' data-ProductClassID='{{ProductClassID}}' data-ProductCode='{{ProductCode}}' data-ProductId='{{ProductId}}' data-IsWholeLife='{{IsWholeLife}}' >{{ProductName}}</option>
 			 {{/each}}
 			</select>
 			<button class="btn btn-default quote-life">Get Quote</button>

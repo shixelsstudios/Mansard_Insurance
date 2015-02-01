@@ -42,9 +42,6 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                     hasGraphs = false;
                     }
                     
-
-                    console.log(this.graphs);
-
                     this.model = new Model({agent: this.agent, graphs: this.graphs, hasGraphs: hasGraphs});
                 }
 

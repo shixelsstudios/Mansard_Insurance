@@ -8,10 +8,13 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             total: null,
             // View Event Handlers
             events: {
-                'click .mini-cart-item-remove': 'removeItem'
+                'click .mini-cart-item-remove': 'removeItem',
+                'click .mini-checkout-button': 'checkout'
             },
             initialize: function() {
 
+                $('.mini-card-total-holder').html(Mansard.cart.total());
+                $('.cart-num').html(Mansard.cart.count());
                 if (Mansard.cart.count() > 2) {
                     this.items = [Mansard.cart.items[0], Mansard.cart.items[1],Mansard.cart.items[2]];
                 } else {
@@ -39,6 +42,10 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             removeItem: function(e) {
                 e.preventDefault();
                 console.log($(this).parent().parent());
+            },
+            checkout: function(e) {
+                e.preventDefault();
+                Mansard.appRouter.navigate('policy/save/' + Mansard.cart.current, {trigger: true});
             }
         });
     });

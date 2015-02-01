@@ -1,4 +1,4 @@
-define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!templates/cart'],
+define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!templates/payment'],
     function(Mansard, Backbone, Marionette, $, Model, template) {
         //ItemView provides some default rendering logic
         return Backbone.Marionette.ItemView.extend( {
@@ -6,7 +6,6 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             model: null,
             // View Event Handlers
             events: {
-
             },
             initialize: function() {
             },
@@ -15,8 +14,6 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
             // assumes 1 child element.
 				this.$el = this.$el.children();
 				this.setElement(this.$el);
-                $('.main-menu-button, #right-area-container').removeClass('close-main-nav active');
-                $('#main-nav-container, #right-area-container').animate({'left': '0%'});
 			}
         });
     });

@@ -55,7 +55,7 @@ define([
         total: function() {
             var cart_total = null;
             for (var i = 0; i < Mansard.cart.count(); i++) {
-                cart_total += Mansard.cart.items[i].price;
+                cart_total += parseInt(Mansard.cart.items[i].price.replace(/\D/g,''));
             }
 
             return cart_total;

@@ -14,24 +14,31 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                 'change .save-policy-insurance-period': 'matchPeriodsToIns',
                 'click .to-motor-2': 'goToMotor2',
                 'click .to-motor-1': 'goToMotor1',
-                'click .submit-motor-policy': 'submitMotor'
+                'click .submit-policy': 'submitPolicy',
+                'click .next-policy': 'moveToNext'
 
             },
             initialize: function(options) {
 
-                this.policy_type = options.type;
+                this.policy_type = Mansard.cart.items[Mansard.cart.current].type;
                 this.SubAgentCode = Mansard.currentUser_SubAgentCode;
                 var lifeProducts = Mansard.api.products('life');
+                var submitButton = null;
+                if (Mansard.cart.current === Mansard.cart.last) {
+                    submitButton = '<button class="policy-next btn btn-primary pull-right submit-policy">Submit Policy(s)</button>';
+                } else {
+                    submitButton = '<button class="policy-next btn btn-primary pull-right next-policy">Next Policy Item</button>';
+                }
                 if (this.policy_type === 'motor') {
                     var motor = {};
                     motor.manYears = Mansard.api.policy_dropdowns('manYear');
                     motor.places = Mansard.api.policy_dropdowns('places');
                     motor.uses = Mansard.api.policy_dropdowns('uses');
                     motor.plates = Mansard.api.policy_dropdowns('plates');
-                    this.model = new Model ({isMotor: true, motor: motor});
+                    this.model = new Model ({isMotor: true, motor: motor, submitButton: submitButton});
                 } else if (this.policy_type === 'life'){
                     this.payFreq = Mansard.api.policy_dropdowns('payFreq');
-                    this.model = new Model({isMotor: false, lifeProducts: lifeProducts, payFreq: this.payFreq});
+                    this.model = new Model({isMotor: false, lifeProducts: lifeProducts, payFreq: this.payFreq, submitButton: submitButton});
                 }
             },
             onRender: function () {
@@ -83,9 +90,32 @@ define( ['Mansard', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!tem
                 $('.policy-motor-form-page').hide();
                 $('.policy-motor-form-2').show()
             },
-            submitMotor: function(e){
+            submitPolicy: function(e){
                  e.preventDefault()
+                 if (this.policy_type === 'motor') {
 
-            }
+                    var motorFormData = JSON.parse(JSON.stringify($(".policy-motor-form").serializeArray()));
+                    Mansard.cart.items[Mansard.cart.current].policy_details = motorFormData;
+                } else {
+                    var lifeFormData = JSON.parse(JSON.stringify($(".policy-life-form").serializeArray()));
+                    Mansard.cart.items[Mansard.cart.current].policy_details = lifeFormData;
+                }
+                Mansard.appRouter.navigate('payment', {trigger: true});
+            },
+            moveToNext: function(e){
+                e.preventDefault();
+
+                if (this.policy_type === 'motor') {
+                    var motorFormData = JSON.parse(JSON.stringify($(".policy-motor-form").serializeArray()));
+                    Mansard.cart.items[Mansard.cart.current].policy_details = motorFormData;
+                } else {
+                    var lifeFormData = JSON.parse(JSON.stringify($(".policy-life-form").serializeArray()));
+                    Mansard.cart.items[Mansard.cart.current].policy_details = lifeFormData;
+                }
+
+                Mansard.cart.current++;
+                Mansard.appRouter.navigate('policy/save/' + Mansard.cart.current, {trigger: true});
+            
+        }    
         });
     });

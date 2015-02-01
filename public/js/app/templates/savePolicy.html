@@ -67,7 +67,7 @@
 			
 			<div class="policy-item">
 			<label>Vehicle Manufacturing Year</label>
-				<select class="save-policy-man-year">
+				<select name="ManufactureYear" class="save-policy-man-year">
 					<option value="0">--Choose Year--</option>
 					{{#each motor.manYears}}
 					<option value="{{Value}}">{{Description}}</option>
@@ -76,15 +76,15 @@
 			</div>
 			<div class="policy-item">
 				<label>Engine Number</label>
-				<input class="save-policy-engine-number" type="text">
+				<input name="EngineNo" class="save-policy-engine-number" type="text">
 			</div>
 			<div class="policy-item">
 				<label>Chasis Number</label>
-				<input class="save-policy-chasis-number" type="text">
+				<input name="ChassisNo" class="save-policy-chasis-number" type="text">
 			</div>
 			<div class="policy-item">
 				<label>Registration Place</label>
-				<select class="save-policy-reg-place">
+				<select name="RegPlace" class="save-policy-reg-place">
 					<option value="0">--Choose Place--</option>
 					{{#each motor.places}}
 					<option value="{{Code}}">{{RegPlaceName}}</option>
@@ -93,11 +93,11 @@
 			</div>
 			<div class="policy-item">
 				<label>Plate Number</label>
-					<input type="text" class="save-policy-plate-num">
+					<input name="PlateNo" type="text" class="save-policy-plate-num">
 			</div>
 			<div class="policy-item">
 				<label>Plate Colour</label>
-				<select class="save-policy-reg-place">
+				<select name="PlateColor" class="save-policy-reg-place">
 					<option value="0">--Choose Colour--</option>
 					{{#each motor.plates}}
 					<option value="{{Code}}">{{PlateColourName}}</option>
@@ -106,7 +106,7 @@
 			</div>
 			<div class="policy-item">
 				<label>Vehicle Use</label>
-				<select class="save-policy-reg-place">
+				<select name="VehicleUse" class="save-policy-reg-place">
 					<option value="0">--Choose Use--</option>
 					{{#each motor.uses}}
 					<option value="{{Code}}">{{VehicleUseName}}</option>
@@ -115,7 +115,7 @@
 			</div>
 			<div class="policy-item">
 				<label>Sum insured/Value of the vehicle</label>
-					<input type="text" class="save-policy-value">
+					<input name="SumAssured" type="text" class="save-policy-value">
 			</div>
 			<button class="policy-next btn btn-primary pull-right to-motor-2">Next</button>
 		</div>
@@ -123,11 +123,31 @@
 			<h1>2. Pictures of the vehicle</h1>
 			<div class="policy-item">
 				<label>Front of Car</label>
-				<input type="file">
+				<input name="MotorFrontSide" type="file">
+			</div>
+			<div class="policy-item">
+				<label>Back of Car</label>
+				<input name="MotorBackSide" type="file">
+			</div>
+			<div class="policy-item">
+				<label>Left of Car</label>
+				<input name="MotorLeftSide" type="file">
+			</div>
+			<div class="policy-item">
+				<label>Right of Car</label>
+				<input name="MotorRightSide" type="file">
+			</div>
+			<div class="policy-item">
+				<label>Proof of Ownership</label>
+				<input name="ProofOfOwnerShip" type="file">
+			</div>
+			<div class="policy-item">
+				<label>Drivers Licence</label>
+				<input name="DriverLicence" type="file">
 			</div>
 			<div class="clear-fix"></div>
 			<button class="policy-next btn btn-secondar pull-left to-motor-1">Back</button>
-			<button class="policy-next btn btn-primary pull-right submit-motor-policy">Submit Policy</button>
+			{{{submitButton}}}
 		</div>
 	</form>
 	{{else}}
@@ -234,7 +254,7 @@
 				</select>
 			</div>
 			<div class="clear-fix"></div>
-			<button class="life-policy-submit btn btn-primary pull-right">Submit</button>
+			{{{submitButton}}}
 	</form>
 	{{/if}}
 </div>
