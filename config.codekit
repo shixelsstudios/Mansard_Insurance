@@ -328,6 +328,17 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/public\/js\/app\/init\/DesktopInit.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/public\/js\/app\/init\/DesktopInit.min.js",
+		"outputAbbreviatedPath": "\/public\/js\/app\/init\/min\/DesktopInit.min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/public\/js\/app\/init\/MobileInit.js": {
 		"fileType": 64,
 		"ignore": 1,
